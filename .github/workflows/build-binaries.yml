@@ -45,6 +45,9 @@ jobs:
     - name: Build API clients
       run: make serverapi chvapi
 
+    - name: Download Go dependencies
+      run: go mod tidy
+
     - name: Build Go binaries
       run: make restserver client guestinit rootfsmaker cmdserver vsockserver vsockclient initramfs
 
