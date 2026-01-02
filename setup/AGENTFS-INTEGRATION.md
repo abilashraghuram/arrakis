@@ -64,7 +64,7 @@ This integration combines **Arrakis** (microVM sandboxes via cloud-hypervisor) w
 
    ```bash
    cd $HOME
-   curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/install-deps.sh" | bash
+   curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/install-deps.sh" | bash
    source ~/.bashrc
    ```
 
@@ -76,7 +76,7 @@ This integration combines **Arrakis** (microVM sandboxes via cloud-hypervisor) w
 2. **Install Arrakis:**
 
    ```bash
-   curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/setup.sh" | bash
+   curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/setup.sh" | bash
    ```
 
    This downloads:

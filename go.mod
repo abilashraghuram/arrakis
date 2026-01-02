@@ -1,4 +1,4 @@
-module github.com/abshkbh/arrakis
+module github.com/abilashraghuram/arrakis
 
 go 1.23.1
 

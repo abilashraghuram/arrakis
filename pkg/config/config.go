@@ -26,11 +26,13 @@ type ServerConfig struct {
 	BridgeSubnet       string              `mapstructure:"bridge_subnet"`
 	ChvBinPath         string              `mapstructure:"chv_bin"`
 	KernelPath         string              `mapstructure:"kernel"`
-	RootfsPath         string              `mapstructure:"rootfs"`
 	PortForwards       []PortForwardConfig `mapstructure:"port_forwards"`
 	InitramfsPath      string              `mapstructure:"initramfs"`
 	StatefulSizeInMB   int32               `mapstructure:"stateful_size_in_mb"`
 	GuestMemPercentage int32               `mapstructure:"guest_mem_percentage"`
+	NFSServer          string              `mapstructure:"nfs_server"`
+	NFSPort            int32               `mapstructure:"nfs_port"`
+	NFSPath            string              `mapstructure:"nfs_path"`
 }
 
 func (c ServerConfig) String() string {
@@ -47,6 +49,9 @@ PortForwards: %+v
 InitramfsPath: %s
 StatefulSizeInMB: %d
 GuestMemPercentage: %d
+NFSServer: %s
+NFSPort: %d
+NFSPath: %s
 }`,
 		c.Host,
 		c.Port,
@@ -60,6 +65,9 @@ GuestMemPercentage: %d
 		c.InitramfsPath,
 		c.StatefulSizeInMB,
 		c.GuestMemPercentage,
+		c.NFSServer,
+		c.NFSPort,
+		c.NFSPath,
 	)
 }
 

@@ -25,7 +25,7 @@ serverapi: ${OUT_DIR}/arrakis-serverapi.stamp
 ${OUT_DIR}/arrakis-serverapi.stamp: ./api/server-api.yaml
 	mkdir -p ${API_CLIENT_DIR}
 	openapi-generator-cli generate -i $< -g go -o ${API_CLIENT_DIR} --package-name ${API_CLIENT_GO_PACKAGE_NAME} \
-	--git-user-id abshkbh \
+	--git-user-id abilashraghuram \
 	--git-repo-id arrakis/${API_CLIENT_DIR} \
     --additional-properties=withGoMod=false \
 	--global-property models,supportingFiles,apis,apiTests=false
@@ -35,7 +35,7 @@ chvapi: ${OUT_DIR}/arrakis-chvapi.stamp
 ${OUT_DIR}/arrakis-chvapi.stamp: api/chv-api.yaml
 	mkdir -p ${API_CLIENT_DIR}
 	openapi-generator-cli generate -i ./api/chv-api.yaml -g go -o ${CHV_API_DIR} --package-name ${CHV_API_GO_PACKAGE_NAME} \
-	--git-user-id abshkbh \
+	--git-user-id abilashraghuram \
 	--git-repo-id arrakis/${CHV_API_DIR} \
     --additional-properties=withGoMod=false \
 	--global-property models,supportingFiles,apis,apiTests=false

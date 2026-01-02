@@ -16,7 +16,7 @@ paths:
     get:
       summary: Health check endpoint
       responses:
-        '200':
+        "200":
           description: Service is healthy
           content:
             application/json:
@@ -30,28 +30,28 @@ paths:
                     type: string
                     format: date-time
                     example: "2023-05-26T07:17:03Z"
-        '503':
+        "503":
           description: Service is unhealthy
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /v1/vms:
     get:
       summary: List all VMs
       responses:
-        '200':
+        "200":
           description: List of all VMs
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListAllVMsResponse'
-        '500':
+                $ref: "#/components/schemas/ListAllVMsResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
     post:
       summary: Start a VM
       requestBody:
@@ -59,41 +59,41 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StartVMRequest'
+              $ref: "#/components/schemas/StartVMRequest"
       responses:
-        '200':
+        "200":
           description: Successfully started VM
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StartVMResponse'
-        '400':
+                $ref: "#/components/schemas/StartVMResponse"
+        "400":
           description: Invalid request body
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
     delete:
       summary: Destroy all VMs
       responses:
-        '200':
+        "200":
           description: Successfully destroyed all VMs
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DestroyAllVMsResponse'
-        '500':
+                $ref: "#/components/schemas/DestroyAllVMsResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /v1/vms/{name}:
     get:
       summary: Get details of a specific VM
@@ -105,18 +105,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: VM details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListVMResponse'
-        '500':
+                $ref: "#/components/schemas/ListVMResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
     patch:
       summary: Update the state of a specific VM
       parameters:
@@ -138,30 +138,30 @@ paths:
                   enum: [stopped, paused]
                   description: Action to perform on the VM
       responses:
-        '200':
+        "200":
           description: Successfully updated VM state
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VMResponse'
-        '400':
+                $ref: "#/components/schemas/VMResponse"
+        "400":
           description: Invalid request body
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
     delete:
       summary: Destroy a specific VM
       parameters:
@@ -172,24 +172,24 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Successfully destroyed VM
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VMResponse'
-        '404':
+                $ref: "#/components/schemas/VMResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /v1/vms/{name}/snapshots:
     post:
       summary: Create a snapshot of a VM
@@ -211,30 +211,30 @@ paths:
                   type: string
                   description: Unique identifier for the snapshot
       responses:
-        '200':
+        "200":
           description: Successfully created snapshot
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VMSnapshotResponse'
-        '400':
+                $ref: "#/components/schemas/VMSnapshotResponse"
+        "400":
           description: Invalid request body
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /v1/vms/{name}/cmd:
     post:
       summary: Execute command in VM
@@ -250,32 +250,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VmCommandRequest'
+              $ref: "#/components/schemas/VmCommandRequest"
       responses:
-        '200':
+        "200":
           description: Command executed successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VmCommandResponse'
-        '400':
+                $ref: "#/components/schemas/VmCommandResponse"
+        "400":
           description: Invalid request body
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
   /v1/vms/{name}/files:
     post:
       summary: Upload files to VM
@@ -291,32 +291,32 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VmFileUploadRequest'
+              $ref: "#/components/schemas/VmFileUploadRequest"
       responses:
-        '200':
+        "200":
           description: Files uploaded successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VmFileUploadResponse'
-        '400':
+                $ref: "#/components/schemas/VmFileUploadResponse"
+        "400":
           description: Invalid request body
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
     get:
       summary: Download files from VM
       parameters:
@@ -333,30 +333,30 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Files downloaded successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VmFileDownloadResponse'
-        '400':
+                $ref: "#/components/schemas/VmFileDownloadResponse"
+        "400":
           description: Missing paths parameter
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
           description: VM not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     ErrorResponse:
@@ -380,15 +380,21 @@ components:
         initramfs:
           type: string
           description: Path of the initramfs image to be used
-        rootfs:
-          type: string
-          description: Path of the rootfs image to be used
         entryPoint:
           type: string
           description: Optional entry point to start in the VM upon boot
         snapshotId:
           type: string
-          description: Optional ID of the snapshot to restore from. If provided, kernel and rootfs are ignored
+          description: Optional ID of the snapshot to restore from. If provided, kernel is ignored
+        nfsServer:
+          type: string
+          description: NFS server address (e.g., 127.0.0.1). Required for all VMs
+        nfsPort:
+          type: integer
+          description: NFS server port (e.g., 11111). Required for all VMs
+        nfsPath:
+          type: string
+          description: NFS export path (default is /). Optional
     StartVMResponse:
       type: object
       properties:
@@ -403,7 +409,7 @@ components:
         portForwards:
           type: array
           items:
-            $ref: '#/components/schemas/PortForward'
+            $ref: "#/components/schemas/PortForward"
     VMRequest:
       type: object
       properties:
@@ -441,7 +447,7 @@ components:
               portForwards:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PortForward'
+                  $ref: "#/components/schemas/PortForward"
     ListVMResponse:
       type: object
       properties:
@@ -456,7 +462,7 @@ components:
         portForwards:
           type: array
           items:
-            $ref: '#/components/schemas/PortForward'
+            $ref: "#/components/schemas/PortForward"
     VmCommandRequest:
       type: object
       required:

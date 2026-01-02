@@ -8,7 +8,7 @@ hostservices:
     bridge_subnet: "10.20.1.0/24"
     chv_bin: "./resources/bin/cloud-hypervisor"
     kernel: "./resources/bin/vmlinux.bin"
-    rootfs: "./out/arrakis-guestrootfs-ext4.img"
+
     initramfs: "./out/initramfs.cpio.gz"
     port_forwards:
       - port: "5901"
@@ -17,6 +17,11 @@ hostservices:
         description: "code"
     stateful_size_in_mb: "2048"
     guest_mem_percentage: "30"
+    # NFS root configuration (required - all VMs use NFS root)
+    nfs_enabled: true
+    nfs_server: "127.0.0.1"
+    nfs_port: 11111
+    nfs_path: "/"
   client:
     server_host: "127.0.0.1"
     server_port: "7000"

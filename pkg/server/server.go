@@ -23,15 +23,15 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/abshkbh/arrakis/out/gen/chvapi"
-	"github.com/abshkbh/arrakis/out/gen/serverapi"
-	"github.com/abshkbh/arrakis/pkg/callback"
-	"github.com/abshkbh/arrakis/pkg/cmdserver"
-	"github.com/abshkbh/arrakis/pkg/config"
-	"github.com/abshkbh/arrakis/pkg/server/cidallocator"
-	"github.com/abshkbh/arrakis/pkg/server/fountain"
-	"github.com/abshkbh/arrakis/pkg/server/ipallocator"
-	"github.com/abshkbh/arrakis/pkg/server/portallocator"
+	"github.com/abilashraghuram/arrakis/out/gen/chvapi"
+	"github.com/abilashraghuram/arrakis/out/gen/serverapi"
+	"github.com/abilashraghuram/arrakis/pkg/callback"
+	"github.com/abilashraghuram/arrakis/pkg/cmdserver"
+	"github.com/abilashraghuram/arrakis/pkg/config"
+	"github.com/abilashraghuram/arrakis/pkg/server/cidallocator"
+	"github.com/abilashraghuram/arrakis/pkg/server/fountain"
+	"github.com/abilashraghuram/arrakis/pkg/server/ipallocator"
+	"github.com/abilashraghuram/arrakis/pkg/server/portallocator"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gvisor.dev/gvisor/pkg/cleanup"
@@ -195,9 +195,16 @@ func calculateGuestMemorySizeInMB(memoryPercentage int32) (int32, error) {
 	return int32(suggestedMemoryKB / 1024), nil
 }
 
-func getKernelCmdLine(gatewayIP string, guestIP string, vmName string) string {
+func getKernelCmdLine(gatewayIP string, guestIP string, vmName string, nfsServer string, nfsPort int32, nfsPath string) string {
+	// NFS root configuration
+	if nfsPath == "" {
+		nfsPath = "/"
+	}
 	return fmt.Sprintf(
-		"console=ttyS0 gateway_ip=\"%s\" guest_ip=\"%s\" vm_name=\"%s\"",
+		"console=ttyS0 root=/dev/nfs nfsroot=%s:%s,nfsvers=3,tcp,nolock,port=%d ip=dhcp rw gateway_ip=\"%s\" guest_ip=\"%s\" vm_name=\"%s\"",
+		nfsServer,
+		nfsPath,
+		nfsPort,
 		gatewayIP,
 		guestIP,
 		vmName,
@@ -825,8 +832,10 @@ func (s *Server) createVM(
 	vmName string,
 	kernelPath string,
 	initramfsPath string,
-	rootfsPath string,
 	forRestore bool,
+	nfsServer string,
+	nfsPort int32,
+	nfsPath string,
 ) (*vm, error) {
 	cleanup := cleanup.Make(func() {
 		log.WithFields(
@@ -974,16 +983,19 @@ func (s *Server) createVM(
 			return nil, fmt.Errorf("failed to calculate guest memory size: %w", err)
 		}
 		log.Infof("Calculated vCPUs: %d, memory size: %d MB", vcpus, memorySizeMB)
+
+		// Build disk configuration - only stateful disk (NFS root only)
+		disks := []chvapi.DiskConfig{
+			{Path: statefulDiskPath, NumQueues: &numBlockDeviceQueues},
+		}
+
 		vmConfig := chvapi.VmConfig{
 			Payload: chvapi.PayloadConfig{
 				Kernel:    String(kernelPath),
-				Cmdline:   String(getKernelCmdLine(s.config.BridgeIP, guestIP.String(), vmName)),
+				Cmdline:   String(getKernelCmdLine(s.config.BridgeIP, guestIP.String(), vmName, nfsServer, nfsPort, nfsPath)),
 				Initramfs: String(initramfsPath),
 			},
-			Disks: []chvapi.DiskConfig{
-				{Path: rootfsPath, Readonly: Bool(true), NumQueues: &numBlockDeviceQueues},
-				{Path: statefulDiskPath, NumQueues: &numBlockDeviceQueues},
-			},
+			Disks:   disks,
 			Cpus:    &chvapi.CpusConfig{BootVcpus: vcpus, MaxVcpus: vcpus},
 			Memory:  &chvapi.MemoryConfig{Size: int64(memorySizeMB) * 1024 * 1024},
 			Serial:  chvapi.NewConsoleConfig(serialPortMode),
@@ -1236,22 +1248,42 @@ func (s *Server) StartVM(ctx context.Context, req *serverapi.StartVMRequest) (*s
 	}
 
 	kernelPath := req.GetKernel()
-	rootfsPath := req.GetRootfs()
 	initramfsPath := req.GetInitramfs()
 	logger.Infof("Starting VM")
 
-	// If not specified, set kernel and rootfs to defaults.
+	// If not specified, set kernel and initramfs to defaults.
 	if kernelPath == "" {
 		kernelPath = s.config.KernelPath
-	}
-
-	if rootfsPath == "" {
-		rootfsPath = s.config.RootfsPath
 	}
 
 	if initramfsPath == "" {
 		initramfsPath = s.config.InitramfsPath
 	}
+
+	// Extract NFS parameters - required for all VMs
+	nfsServer := req.GetNfsServer()
+	if nfsServer == "" {
+		nfsServer = s.config.NFSServer
+	}
+
+	nfsPort := req.GetNfsPort()
+	if nfsPort == 0 {
+		nfsPort = s.config.NFSPort
+	}
+
+	nfsPath := req.GetNfsPath()
+	if nfsPath == "" {
+		nfsPath = s.config.NFSPath
+	}
+
+	// Validate NFS configuration - required for all VMs
+	if nfsServer == "" {
+		return nil, fmt.Errorf("NFS server address is required")
+	}
+	if nfsPort == 0 {
+		return nil, fmt.Errorf("NFS server port is required")
+	}
+	logger.Infof("Using NFS root: server=%s, port=%d, path=%s", nfsServer, nfsPort, nfsPath)
 
 	vm := s.getVMAtomic(vmName)
 	if vm != nil {
@@ -1269,7 +1301,7 @@ func (s *Server) StartVM(ctx context.Context, req *serverapi.StartVMRequest) (*s
 		}()
 
 		var err error
-		vm, err = s.createVM(ctx, vmName, kernelPath, initramfsPath, rootfsPath, false)
+		vm, err = s.createVM(ctx, vmName, kernelPath, initramfsPath, false, nfsServer, nfsPort, nfsPath)
 		if err != nil {
 			logger.Errorf("failed to create VM: %v", err)
 			return nil, err
@@ -1629,7 +1661,7 @@ func (s *Server) restoreVM(
 		logger.Errorf("TODO: destroy tap device: %s", oldTapDevice.Name)
 	})
 
-	vm, err := s.createVM(ctx, vmName, "", "", "", true)
+	vm, err := s.createVM(ctx, vmName, "", "", true, "", 0, "")
 	if err != nil {
 		return nil, fmt.Errorf("failed to create VM for restore: %w", err)
 	}

@@ -18,11 +18,11 @@ Follow the [GCP Instructions](./gcp-instructions.md) for a complete cloud deploy
 
 ```bash
 # Install dependencies (includes AgentFS)
-curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/install-deps.sh" | bash
+curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/install-deps.sh" | bash
 source ~/.bashrc
 
 # Install Arrakis
-curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/setup.sh" | bash
+curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/setup.sh" | bash
 
 # Verify
 cd ~/arrakis-prebuilt

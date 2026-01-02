@@ -33,13 +33,13 @@
     ```bash    
     # Install dependencies (includes AgentFS)
     cd $HOME
-    curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/install-deps.sh" | bash
+    curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/install-deps.sh" | bash
     
     # Reload shell to get updated PATH
     source ~/.bashrc
     
     # Install Arrakis
-    curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/setup.sh" | bash
+    curl -sSL "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/setup.sh" | bash
     ```
 
 - Verify the installation

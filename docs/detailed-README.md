@@ -12,7 +12,7 @@
 
 - Clone the repository
     ```bash
-    git clone https://github.com/abshkbh/arrakis.git
+    git clone https://github.com/abilashraghuram/arrakis.git
     cd arrakis
     ```
 
@@ -34,7 +34,7 @@
   
   - Install the [cloud-hypervisor](https://github.com/cloud-hypervisor/cloud-hypervisor) binary and note down the path of the binary. This will be used in the [Configuration](#configuration) section. By default we look for this binary at `resources/bin/cloud-hypervisor`, you may place it there.
 
-  - Download the prebuilt guest kernel for the VM from [arrakis-images](https://github.com/abshkbh/arrakis-images/blob/main/guest/kernel/vmlinux.bin), note down the path. This will be used in the [Configuration](#configuration) section. By default we look for this binary at `resources/bin/vmlinux.bin`, you may place it there.
+  - Download the prebuilt guest kernel for the VM from [arrakis-images](https://github.com/abilashraghuram/arrakis-images/blob/main/guest/kernel/vmlinux.bin), note down the path. This will be used in the [Configuration](#configuration) section. By default we look for this binary at `resources/bin/vmlinux.bin`, you may place it there.
 
 ---
 

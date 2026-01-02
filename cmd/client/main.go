@@ -13,8 +13,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 
-	"github.com/abshkbh/arrakis/out/gen/serverapi"
-	"github.com/abshkbh/arrakis/pkg/config"
+	"github.com/abilashraghuram/arrakis/out/gen/serverapi"
+	"github.com/abilashraghuram/arrakis/pkg/config"
 )
 
 var (
@@ -81,7 +81,7 @@ func destroyAllVMs() error {
 	return nil
 }
 
-func startVM(vmName string, kernel string, rootfs string, entryPoint string, snapshotId string) error {
+func startVM(vmName string, kernel string, entryPoint string, snapshotId string) error {
 	var startVMRequest *serverapi.StartVMRequest
 	if snapshotId != "" {
 		// If snapshot ID is provided, restore the VM from the snapshot
@@ -93,7 +93,6 @@ func startVM(vmName string, kernel string, rootfs string, entryPoint string, sna
 		startVMRequest = &serverapi.StartVMRequest{
 			VmName:     serverapi.PtrString(vmName),
 			Kernel:     serverapi.PtrString(kernel),
-			Rootfs:     serverapi.PtrString(rootfs),
 			EntryPoint: serverapi.PtrString(entryPoint),
 		}
 	}
@@ -188,7 +187,7 @@ func snapshotVM(vmName string, snapshotId string) error {
 }
 
 func restoreVM(vmName string, snapshotId string) error {
-	return startVM(vmName, "", "", "", snapshotId)
+	return startVM(vmName, "", "", snapshotId)
 }
 
 func pauseVM(vmName string) error {
@@ -355,11 +354,7 @@ func main() {
 						Aliases: []string{"k"},
 						Usage:   "Path of the kernel image to be used",
 					},
-					&cli.StringFlag{
-						Name:    "rootfs",
-						Aliases: []string{"r"},
-						Usage:   "Path of the rootfs image to be used",
-					},
+
 					&cli.StringFlag{
 						Name:     "entry-point",
 						Aliases:  []string{"e"},
@@ -376,7 +371,6 @@ func main() {
 					return startVM(
 						ctx.String("name"),
 						ctx.String("kernel"),
-						ctx.String("rootfs"),
 						ctx.String("entry-point"),
 						ctx.String("snapshot"),
 					)
