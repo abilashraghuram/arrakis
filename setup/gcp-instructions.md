@@ -31,8 +31,14 @@
 - SSH into the VM.
 
     ```bash    
-    # Use the setup script to install Arrakis
+    # Install dependencies (includes AgentFS)
     cd $HOME
+    curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/install-deps.sh" | bash
+    
+    # Reload shell to get updated PATH
+    source ~/.bashrc
+    
+    # Install Arrakis
     curl -sSL "https://raw.githubusercontent.com/abshkbh/arrakis/main/setup/setup.sh" | bash
     ```
 
@@ -43,17 +49,63 @@
     ls
     ```
 
-- Run the Arrakis REST server
+- **Run Arrakis with AgentFS:**
+
+    AgentFS provides persistent, auditable filesystem tracking for your Arrakis VMs. All filesystem operations are stored in SQLite with full change history.
+
+- Start the AgentFS-enabled launcher:
 
     ```bash
-    sudo ./arrakis-restserver
+    cd $HOME/arrakis-prebuilt
+    bash ../setup/arrakis-agentfs-launcher.sh my-agent-id
     ```
 
-- In another terminal, use the client to start sandboxes.
+    This will:
+    - Initialize AgentFS database from the Arrakis rootfs
+    - Start an NFS server serving the filesystem
+    - Keep running to maintain the NFS server
+
+### AgentFS Features
+
+Once your VMs are using AgentFS (requires manual configuration), you can:
+
+- **View filesystem changes:**
 
     ```bash
-    cd ./arrakis-prebuilt
-    ./arrakis-client
+    cd $HOME/arrakis-prebuilt
+    agentfs diff my-agent-id
     ```
 
-- Or use the Python SDK [py-arrakis](https://pypi.org/project/py-arrakis/) to start sandboxes.
+- **View operation logs:**
+
+    ```bash
+    agentfs log my-agent-id
+    ```
+
+- **Export filesystem to directory:**
+
+    ```bash
+    agentfs export my-agent-id /path/to/output
+    ```
+
+- **List all files:**
+
+    ```bash
+    agentfs ls my-agent-id /
+    ```
+
+- **Read specific files:**
+
+    ```bash
+    agentfs cat my-agent-id /etc/hostname
+    ```
+
+### Important Notes
+
+- AgentFS is REQUIRED for this setup - there is no standard Arrakis mode
+- The setup requires manual configuration to make Arrakis VMs boot with NFS root
+- AgentFS tracks all filesystem operations transparently via NFS protocol
+- VMs have no awareness they're writing to SQLite - they just see a normal filesystem
+- Perfect for auditing AI agent behavior, debugging, and version control of VM states
+- See `arrakis-agentfs-launcher.sh` for integration details
+- See `AGENTFS-INTEGRATION.md` for complete documentation

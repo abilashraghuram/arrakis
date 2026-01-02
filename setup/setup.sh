@@ -4,6 +4,7 @@ set -euo pipefail
 # Define colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # Define variables
@@ -14,6 +15,8 @@ RESOURCES_BIN_DIR="$RESOURCES_DIR/bin"
 OUT_DIR="$ARRAKIS_DIR/out"
 CONFIG_FILE="$ARRAKIS_DIR/config.yaml"
 INSTALL_IMAGES_SCRIPT="$ARRAKIS_DIR/install-images.py"
+AGENTFS_BIN="$HOME/projects/agentfs/cli/target/release/agentfs"
+AGENTFS_DIR="$ARRAKIS_DIR/.agentfs"
 
 # Print colored message
 print_message() {
@@ -22,6 +25,10 @@ print_message() {
 
 print_warning() {
   echo -e "${YELLOW}[Warning]${NC} $1"
+}
+
+print_error() {
+  echo -e "${RED}[Error]${NC} $1"
 }
 
 # Function to download a file
@@ -54,6 +61,7 @@ mkdir -p "$ARRAKIS_DIR"
 mkdir -p "$RESOURCES_DIR"
 mkdir -p "$RESOURCES_BIN_DIR"
 mkdir -p "$OUT_DIR"
+mkdir -p "$AGENTFS_DIR"
 
 
 # Get the latest release URL
@@ -103,7 +111,7 @@ download_file "$RELEASE_URL/VERSION" "$ARRAKIS_DIR/VERSION" "Version information
 # Function to display version information
 display_version_info() {
   local version_file="$ARRAKIS_DIR/VERSION"
-  
+
   if [ -f "$version_file" ]; then
     print_message "Installed Arrakis Version Information:"
     echo -e "${GREEN}================================${NC}"
@@ -124,6 +132,25 @@ display_version_info() {
 # Display version information
 display_version_info
 
+# Check if AgentFS is installed (REQUIRED)
+if [ ! -f "$AGENTFS_BIN" ]; then
+  print_error "AgentFS CLI not found at: $AGENTFS_BIN"
+  print_error "AgentFS is REQUIRED for this setup."
+  print_error ""
+  print_error "Please install dependencies first:"
+  print_error "  curl -sSL \"https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/install-deps.sh\" | bash"
+  print_error "  source ~/.bashrc"
+  print_error ""
+  print_error "Or manually install AgentFS:"
+  print_error "  git clone https://github.com/tursodatabase/agentfs.git $HOME/projects/agentfs"
+  print_error "  cd $HOME/projects/agentfs/cli && cargo build --release"
+  print_error "  sudo ln -sf $HOME/projects/agentfs/cli/target/release/agentfs /usr/local/bin/agentfs"
+  exit 1
+fi
+
+print_message "AgentFS CLI found at: $AGENTFS_BIN"
+print_message "AgentFS directory created at: $AGENTFS_DIR"
+
 # Download install-images.py
 print_message "Downloading install-images.py script..."
 curl -L -o "$INSTALL_IMAGES_SCRIPT" "https://raw.githubusercontent.com/abilashraghuram/arrakis/main/setup/install-images.py"
@@ -134,7 +161,17 @@ print_message "Running install-images.py to download required images..."
 cd "$ARRAKIS_DIR" && ./$(basename "$INSTALL_IMAGES_SCRIPT")
 
 print_message "Setup completed successfully!"
-print_message "You can now run the Arrakis REST server with:"
-print_message "cd "$ARRAKIS_DIR" && ./arrakis-restserver"
-print_message "And use the client with:"
-print_message "cd "$ARRAKIS_DIR" && ./arrakis-client"
+echo ""
+print_message "AgentFS-Enabled Arrakis Usage:"
+echo ""
+print_message "Start AgentFS NFS server:"
+print_message "  cd $ARRAKIS_DIR && bash ../setup/arrakis-agentfs-launcher.sh <agent-id>"
+echo ""
+print_message "Create VM with NFS root:"
+print_message "  cd $ARRAKIS_DIR && bash ../setup/create-nfs-vm.sh 127.0.0.1 11111 <vm-name>"
+echo ""
+print_message "View filesystem changes:"
+print_message "  agentfs diff <agent-id>"
+print_message "  agentfs log <agent-id>"
+echo ""
+print_message "See AGENTFS-INTEGRATION.md for detailed documentation"

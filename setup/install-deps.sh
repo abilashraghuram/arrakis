@@ -62,13 +62,41 @@ sudo apt-get update
 echo "Installing Docker CE and related packages..."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
+# Install Rust toolchain for AgentFS
+echo "Installing Rust toolchain..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
+echo "export PATH=\$PATH:\$HOME/.cargo/bin" >> ~/.bashrc
+
+# Install AgentFS CLI
+echo "Installing AgentFS CLI..."
+mkdir -p "$HOME/projects"
+if [ -d "$HOME/projects/agentfs" ]; then
+  echo "agentfs directory already exists. Pulling latest changes..."
+  cd "$HOME/projects/agentfs"
+  git pull
+else
+  cd "$HOME/projects"
+  git clone https://github.com/tursodatabase/agentfs.git
+fi
+
+echo "Building AgentFS CLI..."
+cd "$HOME/projects/agentfs/cli"
+cargo build --release
+
+echo "AgentFS CLI built at: $HOME/projects/agentfs/cli/target/release/agentfs"
+echo "Adding AgentFS to PATH..."
+sudo ln -sf "$HOME/projects/agentfs/cli/target/release/agentfs" /usr/local/bin/agentfs
+
+cd "$HOME"
+
 echo "Cloning project..."
 mkdir -p "$HOME/projects"
 if [ -d "$HOME/projects/arrakis" ]; then
   echo "arrakis already exists. Skipping clone."
 else
   cd "$HOME/projects"
-  git clone https://github.com/abshkbh/arrakis.git
+  git clone https://github.com/abilashraghuram/arrakis.git
   ./setup/install-images.py
 fi
 cd "$HOME"
