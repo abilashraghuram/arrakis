@@ -76,8 +76,24 @@ jobs:
           ./scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
           ./scripts/config --set-str SYSTEM_REVOCATION_KEYS ""
 
-          # Enable virtio support
+          # Enable PCI support (required for virtio-pci)
+          ./scripts/config --enable PCI
+          ./scripts/config --enable PCI_HOST_GENERIC
+
+          # Enable virtio PCI support (required for Cloud Hypervisor)
+          ./scripts/config --enable VIRTIO_PCI
+          ./scripts/config --enable VIRTIO_PCI_LEGACY
+
+          # Enable virtio MMIO support
+          ./scripts/config --enable VIRTIO_MMIO
           ./scripts/config --enable VIRTIO_MMIO_CMDLINE_DEVICES
+
+          # Enable virtio devices
+          ./scripts/config --enable VIRTIO_BLK
+          ./scripts/config --enable VIRTIO_NET
+          ./scripts/config --enable VIRTIO_CONSOLE
+          ./scripts/config --enable VIRTIO_VSOCKETS
+
           ./scripts/config --disable BLK_DEV_INTEGRITY
 
           # Enable NFS client support
@@ -116,6 +132,12 @@ jobs:
           echo ""
           echo "LOCKD Configuration:"
           grep "CONFIG_LOCKD" .config || echo "Warning: No LOCKD config found"
+          echo ""
+          echo "Virtio PCI Configuration:"
+          grep "CONFIG_VIRTIO_PCI" .config || echo "Warning: No VIRTIO_PCI config found"
+          echo ""
+          echo "Virtio Devices:"
+          grep "CONFIG_VIRTIO_NET\|CONFIG_VIRTIO_BLK" .config || echo "Warning: Virtio devices not found"
           echo "============================================================"
 
       - name: Build kernel
@@ -144,6 +166,10 @@ jobs:
           strings vmlinux | grep -i "nfs_fs" | head -5 || echo "Warning: nfs_fs not found"
           strings vmlinux | grep -i "sunrpc" | head -5 || echo "Warning: sunrpc not found"
           strings vmlinux | grep -i "lockd" | head -5 || echo "Warning: lockd not found"
+          echo ""
+          echo "Checking for virtio-pci support:"
+          strings vmlinux | grep -i "virtio_pci" | head -5 || echo "Warning: virtio_pci not found"
+          strings vmlinux | grep -i "virtio_net" | head -5 || echo "Warning: virtio_net not found"
           echo ""
           echo "Kernel version:"
           strings vmlinux | grep "Linux version" | head -1
@@ -178,7 +204,8 @@ jobs:
           ARRAKIS_COMMIT=${{ github.sha }}
           ARRAKIS_COMMIT_SHORT=$(echo ${{ github.sha }} | cut -c1-8)
           NFS_SUPPORT=enabled
-          FEATURES=nfs,nfsv3,nfsv4,sunrpc,lockd,virtio
+          VIRTIO_PCI_SUPPORT=enabled
+          FEATURES=nfs,nfsv3,nfsv4,sunrpc,lockd,virtio-pci,virtio-net,virtio-blk
           CONFIG=firecracker-microvm-base
           EOF
 
