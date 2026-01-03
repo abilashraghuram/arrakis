@@ -79,6 +79,18 @@ jobs:
           # Enable PCI support (required for virtio-pci)
           ./scripts/config --enable PCI
           ./scripts/config --enable PCI_HOST_GENERIC
+          ./scripts/config --enable PCI_MSI
+          ./scripts/config --enable PCI_MSI_IRQ_DOMAIN
+          ./scripts/config --enable PCIEPORTBUS
+
+          # Enable ACPI support for PCI device enumeration
+          ./scripts/config --enable ACPI
+          ./scripts/config --enable ACPI_PCI_SLOT
+
+          # Enable virtio core support
+          ./scripts/config --enable VIRTIO
+          ./scripts/config --enable VIRTIO_MENU
+          ./scripts/config --enable VIRTIO_RING
 
           # Enable virtio PCI support (required for Cloud Hypervisor)
           ./scripts/config --enable VIRTIO_PCI
