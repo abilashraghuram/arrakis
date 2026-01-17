@@ -28,9 +28,8 @@ const (
 
 // Global variables set from kernel command line
 var (
-	gatewayIP   string
-	vmName      string
-	callbackURL string // Optional: if set, callbacks go directly to this URL instead of Arrakis host
+	gatewayIP string
+	vmName    string
 )
 
 // CallbackRequest represents an RPC callback request to the host.
@@ -63,9 +62,6 @@ func parseKernelCmdLine() error {
 		if strings.HasPrefix(part, "vm_name=") {
 			vmName = strings.Trim(strings.TrimPrefix(part, "vm_name="), "\"")
 		}
-		if strings.HasPrefix(part, "callback_url=") {
-			callbackURL = strings.Trim(strings.TrimPrefix(part, "callback_url="), "\"")
-		}
 	}
 
 	if gatewayIP == "" {
@@ -83,29 +79,22 @@ func parseKernelCmdLine() error {
 	}
 
 	log.WithFields(log.Fields{
-		"gatewayIP":   gatewayIP,
-		"vmName":      vmName,
-		"callbackURL": callbackURL,
+		"gatewayIP": gatewayIP,
+		"vmName":    vmName,
 	}).Info("Parsed kernel command line")
 
 	return nil
 }
 
-// handleCallback processes a CALLBACK command and sends it to the host or external callback URL.
+// handleCallback processes a CALLBACK command and sends it to the arrakis-restserver.
+// The restserver is responsible for routing the callback to the registered HTTP callback URL.
 func handleCallback(method string, paramsJSON string) (string, error) {
-	var url string
-
-	if callbackURL != "" {
-		// Direct HTTP callback to external URL (e.g., MCP server)
-		url = callbackURL
-	} else {
-		// Fallback to Arrakis host callback (original behavior)
-		hostIP := gatewayIP
-		if idx := strings.Index(hostIP, "/"); idx != -1 {
-			hostIP = hostIP[:idx]
-		}
-		url = fmt.Sprintf("http://%s:7000/v1/internal/callback", hostIP)
+	// Always send callbacks to the arrakis-restserver via the gateway
+	hostIP := gatewayIP
+	if idx := strings.Index(hostIP, "/"); idx != -1 {
+		hostIP = hostIP[:idx]
 	}
+	url := fmt.Sprintf("http://%s:7000/v1/internal/callback", hostIP)
 
 	// Build the callback request
 	req := CallbackRequest{
@@ -139,7 +128,7 @@ func handleCallback(method string, paramsJSON string) (string, error) {
 		"url":    url,
 		"method": method,
 		"vmName": vmName,
-	}).Info("Sending callback to host")
+	}).Info("Sending callback to arrakis-restserver")
 
 	resp, err := client.Do(httpReq)
 	if err != nil {
@@ -153,10 +142,16 @@ func handleCallback(method string, paramsJSON string) (string, error) {
 		return "", fmt.Errorf("failed to read callback response: %w", err)
 	}
 
+	// Check for HTTP errors
+	if resp.StatusCode >= 400 {
+		return "", fmt.Errorf("callback returned HTTP %d: %s", resp.StatusCode, string(respBody))
+	}
+
 	// Parse the response
 	var callbackResp CallbackResponse
 	if err := json.Unmarshal(respBody, &callbackResp); err != nil {
-		return "", fmt.Errorf("failed to parse callback response: %w", err)
+		// If we can't parse as CallbackResponse, return the raw body
+		return string(respBody), nil
 	}
 
 	if callbackResp.Error != "" {
@@ -312,7 +307,7 @@ func main() {
 		log.Fatalf("Failed to create base directory: %v", err)
 	}
 
-	// Parse kernel command line to get gateway IP
+	// Parse kernel command line to get gateway IP and VM name
 	if err := parseKernelCmdLine(); err != nil {
 		log.Warnf("Failed to parse kernel command line: %v", err)
 		// Continue anyway, callbacks just won't work
@@ -325,7 +320,7 @@ func main() {
 	defer listener.Close()
 
 	log.Printf("VSock server listening on port %d...", port)
-	log.Printf("Gateway IP: %s, VM Name: %s, Callback URL: %s", gatewayIP, vmName, callbackURL)
+	log.Printf("Gateway IP: %s, VM Name: %s", gatewayIP, vmName)
 
 	// Make other services start via systemd since we're ready to debug.
 	if _, err := daemon.SdNotify(false, daemon.SdNotifyReady); err != nil {

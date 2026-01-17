@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 
@@ -24,16 +23,6 @@ import (
 const (
 	API_VERSION = "v1"
 )
-
-// WebSocket upgrader with default options
-var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
-	CheckOrigin: func(r *http.Request) bool {
-		// Allow all origins for development; restrict in production
-		return true
-	},
-}
 
 // sendErrorResponse sends a standardized error response to the client.
 func sendErrorResponse(w http.ResponseWriter, statusCode int, message string) {
@@ -64,39 +53,6 @@ func (s *restServer) healthCheck(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// handleWebSocket handles WebSocket connections for RPC callbacks.
-func (s *restServer) handleWebSocket(w http.ResponseWriter, r *http.Request) {
-	logger := log.WithField("api", "handleWebSocket")
-	vars := mux.Vars(r)
-	vmName := vars["name"]
-
-	if vmName == "" {
-		logger.Error("Empty vm name in WebSocket connection")
-		sendErrorResponse(w, http.StatusBadRequest, "VM name is required")
-		return
-	}
-
-	// Upgrade HTTP connection to WebSocket
-	conn, err := upgrader.Upgrade(w, r, nil)
-	if err != nil {
-		logger.WithField("vmName", vmName).WithError(err).Error("Failed to upgrade to WebSocket")
-		return
-	}
-
-	// Create session for this VM
-	session, err := s.sessionManager.CreateSession(vmName, conn)
-	if err != nil {
-		logger.WithField("vmName", vmName).WithError(err).Error("Failed to create session")
-		conn.Close()
-		return
-	}
-
-	logger.WithFields(log.Fields{
-		"vmName":    vmName,
-		"sessionId": session.ID,
-	}).Info("WebSocket connection established")
-}
-
 // Implement handler functions
 func (s *restServer) startVM(w http.ResponseWriter, r *http.Request) {
 	logger := log.WithField("api", "startVM")
@@ -122,6 +78,8 @@ func (s *restServer) startVM(w http.ResponseWriter, r *http.Request) {
 	}
 
 	vmName := req.GetVmName()
+	callbackUrl := req.GetCallbackUrl()
+
 	resp, err := s.vmServer.StartVM(r.Context(), &req)
 	if err != nil {
 		logger.WithField("vmName", vmName).WithError(err).Error("Failed to start VM")
@@ -130,6 +88,23 @@ func (s *restServer) startVM(w http.ResponseWriter, r *http.Request) {
 			http.StatusInternalServerError,
 			fmt.Sprintf("Failed to start VM: %v", err))
 		return
+	}
+
+	// If callbackUrl is provided, register it with the session manager
+	// The session manager will route callbacks from this VM to the HTTP URL
+	if callbackUrl != "" {
+		_, err := s.sessionManager.RegisterHTTPCallback(vmName, callbackUrl)
+		if err != nil {
+			logger.WithFields(log.Fields{
+				"vmName":      vmName,
+				"callbackUrl": callbackUrl,
+			}).WithError(err).Warn("Failed to register HTTP callback, callbacks will not work")
+		} else {
+			logger.WithFields(log.Fields{
+				"vmName":      vmName,
+				"callbackUrl": callbackUrl,
+			}).Info("Registered HTTP callback for VM")
+		}
 	}
 
 	elapsedTime := time.Since(startTime)
@@ -484,8 +459,8 @@ func (s *restServer) handleInternalCallback(w http.ResponseWriter, r *http.Reque
 		"method": req.Method,
 	}).Info("Processing callback from VM")
 
-	// Route the callback to the client via WebSocket
-	result, err := s.vmServer.RouteCallback(r.Context(), req.VMName, req.Method, req.Params)
+	// Route the callback to the registered HTTP callback URL
+	result, err := s.sessionManager.RouteCallback(r.Context(), req.VMName, req.Method, req.Params)
 	if err != nil {
 		logger.WithFields(log.Fields{
 			"vmName": req.VMName,
@@ -543,24 +518,13 @@ func main() {
 	}
 
 	// At this point `serverConfig` is populated.
-	// Create the session manager for handling WebSocket connections
+	// Create the session manager for handling HTTP callback sessions
 	sessionManager := callback.NewSessionManager()
 
 	// Create the VM server
 	vmServer, err := server.NewServer(*serverConfig, sessionManager)
 	if err != nil {
 		log.Fatalf("failed to create VM server: %v", err)
-	}
-
-	// Set up callback to destroy VM when client disconnects
-	sessionManager.OnSessionClose = func(vmName string) {
-		log.WithField("vmName", vmName).Info("Client disconnected, destroying VM")
-		req := serverapi.VMRequest{
-			VmName: &vmName,
-		}
-		if _, err := vmServer.DestroyVM(context.Background(), &req); err != nil {
-			log.WithField("vmName", vmName).WithError(err).Error("Failed to destroy VM on client disconnect")
-		}
 	}
 
 	// Create REST server
@@ -582,9 +546,6 @@ func main() {
 	r.HandleFunc("/"+API_VERSION+"/vms/{name}/files", s.vmFileUpload).Methods("POST")
 	r.HandleFunc("/"+API_VERSION+"/vms/{name}/files", s.vmFileDownload).Methods("GET")
 	r.HandleFunc("/"+API_VERSION+"/health", s.healthCheck).Methods("GET")
-
-	// WebSocket endpoint for RPC callbacks
-	r.HandleFunc("/"+API_VERSION+"/vms/{name}/ws", s.handleWebSocket).Methods("GET")
 
 	// Internal endpoint for VM callbacks (called by vsockserver in guest)
 	r.HandleFunc("/"+API_VERSION+"/internal/callback", s.handleInternalCallback).Methods("POST")

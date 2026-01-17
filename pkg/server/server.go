@@ -195,17 +195,13 @@ func calculateGuestMemorySizeInMB(memoryPercentage int32) (int32, error) {
 	return int32(suggestedMemoryKB / 1024), nil
 }
 
-func getKernelCmdLine(gatewayIP string, guestIP string, vmName string, callbackUrl string) string {
-	baseCmdline := fmt.Sprintf(
+func getKernelCmdLine(gatewayIP string, guestIP string, vmName string) string {
+	return fmt.Sprintf(
 		"console=ttyS0 gateway_ip=\"%s\" guest_ip=\"%s\" vm_name=\"%s\"",
 		gatewayIP,
 		guestIP,
 		vmName,
 	)
-	if callbackUrl != "" {
-		baseCmdline += fmt.Sprintf(" callback_url=\"%s\"", callbackUrl)
-	}
-	return baseCmdline
 }
 
 // bridgeExists checks if a bridge with the given name exists.
@@ -791,15 +787,6 @@ func NewServer(config config.ServerConfig, sessionManager *callback.SessionManag
 	}, nil
 }
 
-// RouteCallback routes a callback request from a VM to the connected client.
-// This method is called by the vsock callback handler.
-func (s *Server) RouteCallback(ctx context.Context, vmName string, method string, params json.RawMessage) (json.RawMessage, error) {
-	if s.sessionManager == nil {
-		return nil, fmt.Errorf("session manager not initialized")
-	}
-	return s.sessionManager.RouteCallback(ctx, vmName, method, params)
-}
-
 // GetVMNameByCID returns the VM name for the given CID.
 func (s *Server) GetVMNameByCID(cid uint32) (string, error) {
 	s.lock.RLock()
@@ -831,7 +818,6 @@ func (s *Server) createVM(
 	initramfsPath string,
 	rootfsPath string,
 	forRestore bool,
-	callbackUrl string,
 ) (*vm, error) {
 	cleanup := cleanup.Make(func() {
 		log.WithFields(
@@ -982,7 +968,7 @@ func (s *Server) createVM(
 		vmConfig := chvapi.VmConfig{
 			Payload: chvapi.PayloadConfig{
 				Kernel:    String(kernelPath),
-				Cmdline:   String(getKernelCmdLine(s.config.BridgeIP, guestIP.String(), vmName, callbackUrl)),
+				Cmdline:   String(getKernelCmdLine(s.config.BridgeIP, guestIP.String(), vmName)),
 				Initramfs: String(initramfsPath),
 			},
 			Disks: []chvapi.DiskConfig{
@@ -1274,8 +1260,7 @@ func (s *Server) StartVM(ctx context.Context, req *serverapi.StartVMRequest) (*s
 		}()
 
 		var err error
-		callbackUrl := req.GetCallbackUrl()
-		vm, err = s.createVM(ctx, vmName, kernelPath, initramfsPath, rootfsPath, false, callbackUrl)
+		vm, err = s.createVM(ctx, vmName, kernelPath, initramfsPath, rootfsPath, false)
 		if err != nil {
 			logger.Errorf("failed to create VM: %v", err)
 			return nil, err
@@ -1635,7 +1620,7 @@ func (s *Server) restoreVM(
 		logger.Errorf("TODO: destroy tap device: %s", oldTapDevice.Name)
 	})
 
-	vm, err := s.createVM(ctx, vmName, "", "", "", true, "")
+	vm, err := s.createVM(ctx, vmName, "", "", "", true)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create VM for restore: %w", err)
 	}

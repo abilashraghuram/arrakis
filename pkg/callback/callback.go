@@ -1,36 +1,30 @@
 package callback
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
+	"net/http"
 	"sync"
 	"time"
 
-	"github.com/gorilla/websocket"
 	log "github.com/sirupsen/logrus"
 )
 
 const (
-	// Time allowed to write a message to the peer.
-	writeWait = 10 * time.Second
-
-	// Time allowed to read the next pong message from the peer.
-	pongWait = 60 * time.Second
-
-	// Send pings to peer with this period. Must be less than pongWait.
-	pingPeriod = (pongWait * 9) / 10
-
-	// Maximum message size allowed from peer.
-	maxMessageSize = 512 * 1024 // 512KB
-
 	// Default timeout for callback responses
 	defaultCallbackTimeout = 30 * time.Second
+
+	// HTTP client timeout for HTTP callbacks
+	httpCallbackTimeout = 30 * time.Second
 )
 
 // CallbackRequest represents a callback request from the guest VM to the client.
 type CallbackRequest struct {
 	ID        string          `json:"id"`
+	VMName    string          `json:"vmName,omitempty"`
 	Method    string          `json:"method"`
 	Params    json.RawMessage `json:"params,omitempty"`
 	Timestamp int64           `json:"timestamp"`
@@ -49,37 +43,30 @@ type CallbackError struct {
 	Message string `json:"message"`
 }
 
-// ClientSession represents an active WebSocket connection from a client.
-type ClientSession struct {
-	ID     string
-	VMName string
-	conn   *websocket.Conn
-	send   chan []byte
-	done   chan struct{}
-
-	// pendingCallbacks tracks callbacks waiting for responses
-	pendingLock      sync.RWMutex
-	pendingCallbacks map[string]chan *CallbackResponse
+// Session represents an HTTP callback session for a VM.
+type Session struct {
+	ID          string
+	VMName      string
+	CallbackURL string
+	httpClient  *http.Client
 }
 
-// SessionManager manages all active client sessions.
+// SessionManager manages all active callback sessions.
 type SessionManager struct {
 	lock     sync.RWMutex
-	sessions map[string]*ClientSession // keyed by vmName
-
-	// OnSessionClose is called when a session closes (for VM cleanup)
-	OnSessionClose func(vmName string)
+	sessions map[string]*Session // keyed by vmName
 }
 
 // NewSessionManager creates a new SessionManager.
 func NewSessionManager() *SessionManager {
 	return &SessionManager{
-		sessions: make(map[string]*ClientSession),
+		sessions: make(map[string]*Session),
 	}
 }
 
-// CreateSession creates a new client session for the given VM.
-func (m *SessionManager) CreateSession(vmName string, conn *websocket.Conn) (*ClientSession, error) {
+// RegisterHTTPCallback registers an HTTP callback URL for a VM.
+// This is called when a VM is started with a callbackUrl parameter.
+func (m *SessionManager) RegisterHTTPCallback(vmName string, callbackURL string) (*Session, error) {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 
@@ -89,34 +76,39 @@ func (m *SessionManager) CreateSession(vmName string, conn *websocket.Conn) (*Cl
 		existing.Close()
 	}
 
-	session := &ClientSession{
-		ID:               fmt.Sprintf("%s-%d", vmName, time.Now().UnixNano()),
-		VMName:           vmName,
-		conn:             conn,
-		send:             make(chan []byte, 256),
-		done:             make(chan struct{}),
-		pendingCallbacks: make(map[string]chan *CallbackResponse),
+	session := &Session{
+		ID:          fmt.Sprintf("%s-http-%d", vmName, time.Now().UnixNano()),
+		VMName:      vmName,
+		CallbackURL: callbackURL,
+		httpClient: &http.Client{
+			Timeout: httpCallbackTimeout,
+		},
 	}
 
 	m.sessions[vmName] = session
 
-	// Start the read and write pumps
-	go session.writePump()
-	go session.readPump(m)
-
 	log.WithFields(log.Fields{
-		"sessionId": session.ID,
-		"vmName":    vmName,
-	}).Info("Client session created")
+		"sessionId":   session.ID,
+		"vmName":      vmName,
+		"callbackURL": callbackURL,
+	}).Info("HTTP callback session registered")
 
 	return session, nil
 }
 
 // GetSession returns the session for the given VM name.
-func (m *SessionManager) GetSession(vmName string) *ClientSession {
+func (m *SessionManager) GetSession(vmName string) *Session {
 	m.lock.RLock()
 	defer m.lock.RUnlock()
 	return m.sessions[vmName]
+}
+
+// HasSession returns true if a session exists for the given VM name.
+func (m *SessionManager) HasSession(vmName string) bool {
+	m.lock.RLock()
+	defer m.lock.RUnlock()
+	_, exists := m.sessions[vmName]
+	return exists
 }
 
 // RemoveSession removes and closes the session for the given VM.
@@ -128,193 +120,18 @@ func (m *SessionManager) RemoveSession(vmName string) {
 
 	if session != nil {
 		session.Close()
+		log.WithFields(log.Fields{
+			"sessionId": session.ID,
+			"vmName":    vmName,
+		}).Info("Session removed")
 	}
 }
 
-// handleSessionClose is called when a session closes.
-func (m *SessionManager) handleSessionClose(vmName string) {
-	m.lock.Lock()
-	delete(m.sessions, vmName)
-	m.lock.Unlock()
-
-	log.WithField("vmName", vmName).Info("Client session closed")
-
-	if m.OnSessionClose != nil {
-		m.OnSessionClose(vmName)
-	}
-}
-
-// Close closes the client session.
-func (s *ClientSession) Close() {
-	select {
-	case <-s.done:
-		// Already closed
-		return
-	default:
-		close(s.done)
-		s.conn.Close()
-	}
-}
-
-// SendCallback sends a callback request to the client and waits for a response.
-func (s *ClientSession) SendCallback(ctx context.Context, req *CallbackRequest) (*CallbackResponse, error) {
-	// Create a channel to receive the response
-	responseChan := make(chan *CallbackResponse, 1)
-
-	// Register the pending callback
-	s.pendingLock.Lock()
-	s.pendingCallbacks[req.ID] = responseChan
-	s.pendingLock.Unlock()
-
-	// Clean up on exit
-	defer func() {
-		s.pendingLock.Lock()
-		delete(s.pendingCallbacks, req.ID)
-		s.pendingLock.Unlock()
-	}()
-
-	// Serialize the request
-	data, err := json.Marshal(req)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal callback request: %w", err)
-	}
-
-	// Send the request
-	select {
-	case s.send <- data:
-	case <-s.done:
-		return nil, fmt.Errorf("session closed")
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
-
-	// Wait for response
-	select {
-	case resp := <-responseChan:
-		return resp, nil
-	case <-s.done:
-		return nil, fmt.Errorf("session closed while waiting for callback response")
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	}
-}
-
-// readPump pumps messages from the WebSocket connection.
-func (s *ClientSession) readPump(m *SessionManager) {
-	defer func() {
-		m.handleSessionClose(s.VMName)
-		s.Close()
-	}()
-
-	s.conn.SetReadLimit(maxMessageSize)
-	s.conn.SetReadDeadline(time.Now().Add(pongWait))
-	s.conn.SetPongHandler(func(string) error {
-		s.conn.SetReadDeadline(time.Now().Add(pongWait))
-		return nil
-	})
-
-	for {
-		_, message, err := s.conn.ReadMessage()
-		if err != nil {
-			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				log.WithFields(log.Fields{
-					"sessionId": s.ID,
-					"vmName":    s.VMName,
-				}).WithError(err).Error("WebSocket read error")
-			}
-			return
-		}
-
-		// Parse the response
-		var resp CallbackResponse
-		if err := json.Unmarshal(message, &resp); err != nil {
-			log.WithFields(log.Fields{
-				"sessionId": s.ID,
-				"vmName":    s.VMName,
-			}).WithError(err).Error("Failed to parse callback response")
-			continue
-		}
-
-		// Route to the pending callback
-		s.pendingLock.RLock()
-		responseChan, ok := s.pendingCallbacks[resp.ID]
-		s.pendingLock.RUnlock()
-
-		if ok {
-			select {
-			case responseChan <- &resp:
-			default:
-				// Channel full or closed, log and continue
-				log.WithFields(log.Fields{
-					"sessionId":  s.ID,
-					"vmName":     s.VMName,
-					"callbackId": resp.ID,
-				}).Warn("Failed to deliver callback response")
-			}
-		} else {
-			log.WithFields(log.Fields{
-				"sessionId":  s.ID,
-				"vmName":     s.VMName,
-				"callbackId": resp.ID,
-			}).Warn("Received response for unknown callback")
-		}
-	}
-}
-
-// writePump pumps messages from the send channel to the WebSocket connection.
-func (s *ClientSession) writePump() {
-	ticker := time.NewTicker(pingPeriod)
-	defer func() {
-		ticker.Stop()
-		s.conn.Close()
-	}()
-
-	for {
-		select {
-		case message, ok := <-s.send:
-			s.conn.SetWriteDeadline(time.Now().Add(writeWait))
-			if !ok {
-				// Channel closed
-				s.conn.WriteMessage(websocket.CloseMessage, []byte{})
-				return
-			}
-
-			w, err := s.conn.NextWriter(websocket.TextMessage)
-			if err != nil {
-				return
-			}
-			w.Write(message)
-
-			if err := w.Close(); err != nil {
-				return
-			}
-
-		case <-ticker.C:
-			s.conn.SetWriteDeadline(time.Now().Add(writeWait))
-			if err := s.conn.WriteMessage(websocket.PingMessage, nil); err != nil {
-				return
-			}
-
-		case <-s.done:
-			return
-		}
-	}
-}
-
-// RouteCallback routes a callback from a VM to the appropriate client session.
-// This is called by the vsock server when it receives a CALLBACK command.
+// RouteCallback routes a callback from a VM to the registered HTTP callback URL.
 func (m *SessionManager) RouteCallback(ctx context.Context, vmName string, method string, params json.RawMessage) (json.RawMessage, error) {
 	session := m.GetSession(vmName)
 	if session == nil {
-		return nil, fmt.Errorf("no active session for VM: %s", vmName)
-	}
-
-	// Create the callback request
-	req := &CallbackRequest{
-		ID:        fmt.Sprintf("%s-%d", vmName, time.Now().UnixNano()),
-		Method:    method,
-		Params:    params,
-		Timestamp: time.Now().Unix(),
+		return nil, fmt.Errorf("no active callback session for VM: %s", vmName)
 	}
 
 	// Set timeout if not already set in context
@@ -324,16 +141,92 @@ func (m *SessionManager) RouteCallback(ctx context.Context, vmName string, metho
 		defer cancel()
 	}
 
-	// Send and wait for response
-	resp, err := session.SendCallback(ctx, req)
-	if err != nil {
-		return nil, fmt.Errorf("callback failed: %w", err)
-	}
-
-	if resp.Error != nil {
-		return nil, fmt.Errorf("callback error [%d]: %s", resp.Error.Code, resp.Error.Message)
-	}
-
-	return resp.Result, nil
+	return session.sendCallback(ctx, vmName, method, params)
 }
 
+// Close closes the session and releases resources.
+func (s *Session) Close() {
+	if s.httpClient != nil {
+		s.httpClient.CloseIdleConnections()
+	}
+
+	log.WithFields(log.Fields{
+		"sessionId": s.ID,
+		"vmName":    s.VMName,
+	}).Debug("Session closed")
+}
+
+// sendCallback sends a callback via HTTP POST to the callback URL.
+func (s *Session) sendCallback(ctx context.Context, vmName string, method string, params json.RawMessage) (json.RawMessage, error) {
+	// Create the callback request
+	req := &CallbackRequest{
+		ID:        fmt.Sprintf("%s-%d", vmName, time.Now().UnixNano()),
+		VMName:    vmName,
+		Method:    method,
+		Params:    params,
+		Timestamp: time.Now().Unix(),
+	}
+
+	// Serialize the request
+	reqBody, err := json.Marshal(req)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal callback request: %w", err)
+	}
+
+	// Create HTTP request
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", s.CallbackURL, bytes.NewReader(reqBody))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create HTTP request: %w", err)
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+
+	log.WithFields(log.Fields{
+		"sessionId":   s.ID,
+		"vmName":      vmName,
+		"method":      method,
+		"callbackURL": s.CallbackURL,
+	}).Debug("Sending HTTP callback")
+
+	// Send the request
+	resp, err := s.httpClient.Do(httpReq)
+	if err != nil {
+		return nil, fmt.Errorf("HTTP callback request failed: %w", err)
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read callback response: %w", err)
+	}
+
+	// Check for HTTP errors
+	if resp.StatusCode >= 400 {
+		return nil, fmt.Errorf("HTTP callback returned status %d: %s", resp.StatusCode, string(respBody))
+	}
+
+	// Parse the response
+	var callbackResp CallbackResponse
+	if err := json.Unmarshal(respBody, &callbackResp); err != nil {
+		// If we can't parse as CallbackResponse, return the raw body as result
+		log.WithFields(log.Fields{
+			"sessionId": s.ID,
+			"vmName":    vmName,
+			"method":    method,
+		}).Debug("Response is not in CallbackResponse format, returning raw body")
+		return respBody, nil
+	}
+
+	// Check for error in response
+	if callbackResp.Error != nil {
+		return nil, fmt.Errorf("callback error [%d]: %s", callbackResp.Error.Code, callbackResp.Error.Message)
+	}
+
+	log.WithFields(log.Fields{
+		"sessionId": s.ID,
+		"vmName":    vmName,
+		"method":    method,
+	}).Debug("HTTP callback completed successfully")
+
+	return callbackResp.Result, nil
+}

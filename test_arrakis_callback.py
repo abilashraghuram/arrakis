@@ -22,7 +22,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from py_arrakis import SandboxManager
 
 # Configuration
-ARRAKIS_SERVER_URL = "http://35.212.185.249:7000"
+ARRAKIS_SERVER_URL = "http://35.212.221.66:7000"
 CALLBACK_SERVER_HOST = "0.0.0.0"
 CALLBACK_SERVER_PORT = 8080
 
@@ -123,12 +123,9 @@ def get_callback_url():
     that the VM can reach. For local testing, you may need to use
     your machine's IP address that's reachable from the VM network.
     """
-    # For testing, you'll need to replace this with your actual reachable IP
-    # The VM needs to be able to reach this address
-    import socket
-    hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
-    return f"http://{local_ip}:{CALLBACK_SERVER_PORT}"
+    # Using ngrok to expose local callback server to the internet
+    # The VM on the remote devbox can reach this URL
+    return "https://e46e12e1d790.ngrok.app"
 
 
 def main():
@@ -190,9 +187,10 @@ def main():
         print("=" * 60)
 
         # Execute a command that triggers a CALLBACK
-        # The vsockserver inside the VM will send this to our callback URL
+        # The vsockserver inside the VM listens on VSOCK port 4032
+        # CID 2 is the host in virtio-vsock
         callback_cmd = '''
-echo "CALLBACK echo {\\"message\\": \\"Hello from VM\\"}" | nc -U /tmp/vsock.sock 2>/dev/null || echo "Callback sent"
+echo "CALLBACK echo {\\"message\\": \\"Hello from VM\\"}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
@@ -206,7 +204,7 @@ echo "CALLBACK echo {\\"message\\": \\"Hello from VM\\"}" | nc -U /tmp/vsock.soc
         print("=" * 60)
 
         callback_cmd = '''
-echo "CALLBACK get_appliance_info {}" | nc -U /tmp/vsock.sock 2>/dev/null || echo "Callback sent"
+echo "CALLBACK get_appliance_info {}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
@@ -220,7 +218,7 @@ echo "CALLBACK get_appliance_info {}" | nc -U /tmp/vsock.sock 2>/dev/null || ech
         print("=" * 60)
 
         callback_cmd = '''
-echo "CALLBACK add_numbers {\\"a\\": 10, \\"b\\": 25}" | nc -U /tmp/vsock.sock 2>/dev/null || echo "Callback sent"
+echo "CALLBACK add_numbers {\\"a\\": 10, \\"b\\": 25}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
