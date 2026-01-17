@@ -12,7 +12,7 @@ def ensure_directory_exists(path):
 def download_file(url, destination, make_executable=False):
     """Download a file from URL to destination."""
     print(f"Downloading {url} to {destination}...")
-    
+
     # For GitHub blob URLs, we need to get the raw content URL
     if "blob" in url:
         url = url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
@@ -37,7 +37,7 @@ def main():
     # Download files
     files_to_download = [
         {
-            "url": "https://github.com/abshkbh/arrakis-images/blob/main/guest/kernel/vmlinux.bin",
+            "url": "https://github.com/abilashraghuram/arrakis-images/blob/main/guest/kernel/vmlinux.bin",
             "destination": f"{bin_dir}/vmlinux.bin",
             "executable": False
         },
@@ -47,7 +47,7 @@ def main():
             "executable": True
         },
         {
-            "url": "https://github.com/abshkbh/arrakis-images/blob/main/busybox",
+            "url": "https://github.com/abilashraghuram/arrakis-images/blob/main/busybox",
             "destination": f"{bin_dir}/busybox",
             "executable": True
         }

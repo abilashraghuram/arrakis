@@ -68,7 +68,7 @@ if [ -d "$HOME/projects/arrakis" ]; then
   echo "arrakis already exists. Skipping clone."
 else
   cd "$HOME/projects"
-  git clone https://github.com/abshkbh/arrakis.git
+  git clone https://github.com/abilashraghuram/arrakis.git
   ./setup/install-images.py
 fi
 cd "$HOME"

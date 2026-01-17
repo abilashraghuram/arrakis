@@ -13,8 +13,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 
-	"github.com/abshkbh/arrakis/out/gen/serverapi"
-	"github.com/abshkbh/arrakis/pkg/config"
+	"github.com/abilashraghuram/arrakis/out/gen/serverapi"
+	"github.com/abilashraghuram/arrakis/pkg/config"
 )
 
 var (

@@ -16,7 +16,7 @@ Many agents have elaborate multi-step plans to achieve their goals and benefit f
 
 - Each sandbox runs Ubuntu inside with a code execution service and a VNC server running at boot.
 
-- A REST API, Python SDK [py-arrakis](https://pypi.org/project/py-arrakis/), and a [MCP server](https://github.com/abshkbh/arrakis-mcp-server) let clients (both humans and AI Agents) programatically spawn sandboxes, upload files, and execute code inside each sandbox.
+- A REST API, Python SDK [py-arrakis](https://pypi.org/project/py-arrakis/), and a [MCP server](https://github.com/abilashraghuram/arrakis-mcp-server) let clients (both humans and AI Agents) programatically spawn sandboxes, upload files, and execute code inside each sandbox.
 
 - Automatically sets up and manages port forwarding from the self-hosted public server to the sanboxes running on it i.e. clients can easily access the sandbox GUI (including Chrome for computer use) without extra setup.
 
@@ -109,7 +109,7 @@ Arrakis comes with a Python SDK [py-arrakis](https://pypi.org/project/py-arrakis
   pip install py-arrakis
   ```
 
-- Follow the instructions in [Usage](#usage) to run the `arrakis-restserver` on a Linux machine, or download pre-built binaries from the [official releases page](https://github.com/abshkbh/arrakis/releases).
+- Follow the instructions in [Usage](#usage) to run the `arrakis-restserver` on a Linux machine, or download pre-built binaries from the [official releases page](https://github.com/abilashraghuram/arrakis/releases).
 
 - Use py-arrakis to interact with `arrakis-restserver`.
 
@@ -148,7 +148,7 @@ ___
 
 ### MCP
 
-- Arrakis also comes with a [MCP server](https://github.com/abshkbh/arrakis-mcp-server) that lets MCP clients like Claude Desktop App, Windsurf, Cursor etc.. spawn and manage sandboxes.
+- Arrakis also comes with a [MCP server](https://github.com/abilashraghuram/arrakis-mcp-server) that lets MCP clients like Claude Desktop App, Windsurf, Cursor etc.. spawn and manage sandboxes.
 
 - Here is a sample `claude_desktop_config.json`
   ```json

@@ -12,7 +12,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/abshkbh/arrakis/pkg/cmdserver"
+	"github.com/abilashraghuram/arrakis/pkg/cmdserver"
 	"github.com/gorilla/mux"
 	"github.com/mattn/go-shellwords"
 )
