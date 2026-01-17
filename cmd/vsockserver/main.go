@@ -28,8 +28,9 @@ const (
 
 // Global variables set from kernel command line
 var (
-	gatewayIP string
-	vmName    string
+	gatewayIP   string
+	vmName      string
+	callbackURL string // Optional: if set, callbacks go directly to this URL instead of Arrakis host
 )
 
 // CallbackRequest represents an RPC callback request to the host.
@@ -62,6 +63,9 @@ func parseKernelCmdLine() error {
 		if strings.HasPrefix(part, "vm_name=") {
 			vmName = strings.Trim(strings.TrimPrefix(part, "vm_name="), "\"")
 		}
+		if strings.HasPrefix(part, "callback_url=") {
+			callbackURL = strings.Trim(strings.TrimPrefix(part, "callback_url="), "\"")
+		}
 	}
 
 	if gatewayIP == "" {
@@ -79,19 +83,28 @@ func parseKernelCmdLine() error {
 	}
 
 	log.WithFields(log.Fields{
-		"gatewayIP": gatewayIP,
-		"vmName":    vmName,
+		"gatewayIP":   gatewayIP,
+		"vmName":      vmName,
+		"callbackURL": callbackURL,
 	}).Info("Parsed kernel command line")
 
 	return nil
 }
 
-// handleCallback processes a CALLBACK command and sends it to the host.
+// handleCallback processes a CALLBACK command and sends it to the host or external callback URL.
 func handleCallback(method string, paramsJSON string) (string, error) {
-	// Parse the gateway IP to remove CIDR notation if present
-	hostIP := gatewayIP
-	if idx := strings.Index(hostIP, "/"); idx != -1 {
-		hostIP = hostIP[:idx]
+	var url string
+
+	if callbackURL != "" {
+		// Direct HTTP callback to external URL (e.g., MCP server)
+		url = callbackURL
+	} else {
+		// Fallback to Arrakis host callback (original behavior)
+		hostIP := gatewayIP
+		if idx := strings.Index(hostIP, "/"); idx != -1 {
+			hostIP = hostIP[:idx]
+		}
+		url = fmt.Sprintf("http://%s:7000/v1/internal/callback", hostIP)
 	}
 
 	// Build the callback request
@@ -111,8 +124,7 @@ func handleCallback(method string, paramsJSON string) (string, error) {
 		return "", fmt.Errorf("failed to marshal callback request: %w", err)
 	}
 
-	// Make HTTP request to the host
-	url := fmt.Sprintf("http://%s:7000/v1/internal/callback", hostIP)
+	// Make HTTP request
 	httpReq, err := http.NewRequest("POST", url, bytes.NewReader(reqBody))
 	if err != nil {
 		return "", fmt.Errorf("failed to create HTTP request: %w", err)
@@ -313,7 +325,7 @@ func main() {
 	defer listener.Close()
 
 	log.Printf("VSock server listening on port %d...", port)
-	log.Printf("Gateway IP: %s, VM Name: %s", gatewayIP, vmName)
+	log.Printf("Gateway IP: %s, VM Name: %s, Callback URL: %s", gatewayIP, vmName, callbackURL)
 
 	// Make other services start via systemd since we're ready to debug.
 	if _, err := daemon.SdNotify(false, daemon.SdNotifyReady); err != nil {
