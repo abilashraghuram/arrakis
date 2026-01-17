@@ -37,7 +37,7 @@ def main():
     # Download files
     files_to_download = [
         {
-            "url": "https://github.com/abilashraghuram/arrakis-images/blob/main/guest/kernel/vmlinux.bin",
+            "url": "https://github.com/abshkbh/arrakis-images/blob/main/guest/kernel/vmlinux.bin",
             "destination": f"{bin_dir}/vmlinux.bin",
             "executable": False
         },
@@ -47,7 +47,7 @@ def main():
             "executable": True
         },
         {
-            "url": "https://github.com/abilashraghuram/arrakis-images/blob/main/busybox",
+            "url": "https://github.com/abshkbh/arrakis-images/blob/main/busybox",
             "destination": f"{bin_dir}/busybox",
             "executable": True
         }
