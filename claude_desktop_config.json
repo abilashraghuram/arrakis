@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "cintegrity": {
+      "command": "/Users/abilashraghuram/CodeIntegrity/arrakis/cintegrity/.venv/bin/python",
+      "args": [
+        "-m",
+        "cintegrity.gateway.cli",
+        "--config",
+        "/Users/abilashraghuram/CodeIntegrity/arrakis/cintegrity/codemode-py/mcp_config.json"
+      ],
+      "cwd": "/Users/abilashraghuram/CodeIntegrity/arrakis/cintegrity",
+      "env": {
+        "ARRAKIS_URL": "http://35.212.221.66:7000",
+        "ARRAKIS_CALLBACK_URL": "https://7202f9750f8f.ngrok-free.app",
+        "ARRAKIS_CALLBACK_PORT": "8080"
+      }
+    }
+  }
+}
