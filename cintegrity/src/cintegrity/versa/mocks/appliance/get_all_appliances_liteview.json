@@ -1,0 +1,695 @@
+{
+  "totalCount": 69,
+  "appliances": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "ip": "10.0.1.10",
+      "site": "Ashburn DC",
+      "model": "FlexVNF-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CONTROLLER"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "ip": "10.0.2.10",
+      "site": "San Jose DC",
+      "model": "FlexVNF-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CONTROLLER"
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "ip": "10.1.1.10",
+      "site": "Newark Hub",
+      "model": "FlexVNF-500",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "HUB"
+    },
+    {
+      "uuid": "hub-southeast-001",
+      "name": "Hub-Southeast",
+      "ip": "10.1.2.10",
+      "site": "Atlanta Hub",
+      "model": "FlexVNF-500",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "HUB"
+    },
+    {
+      "uuid": "hub-west-001",
+      "name": "Hub-West",
+      "ip": "10.1.3.10",
+      "site": "Los Angeles Hub",
+      "model": "FlexVNF-500",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "HUB"
+    },
+    {
+      "uuid": "cloud-aws-east-001",
+      "name": "Cloud-AWS-East",
+      "ip": "10.200.1.10",
+      "site": "AWS us-east-1",
+      "model": "VOS-Cloud",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CLOUD_GATEWAY"
+    },
+    {
+      "uuid": "cloud-aws-west-001",
+      "name": "Cloud-AWS-West",
+      "ip": "10.200.2.10",
+      "site": "AWS us-west-2",
+      "model": "VOS-Cloud",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CLOUD_GATEWAY"
+    },
+    {
+      "uuid": "cloud-azure-east-001",
+      "name": "Cloud-Azure-East",
+      "ip": "10.201.1.10",
+      "site": "Azure East US",
+      "model": "VOS-Cloud",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CLOUD_GATEWAY"
+    },
+    {
+      "uuid": "cloud-azure-west-001",
+      "name": "Cloud-Azure-West",
+      "ip": "10.201.2.10",
+      "site": "Azure West US",
+      "model": "VOS-Cloud",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CLOUD_GATEWAY"
+    },
+    {
+      "uuid": "cloud-gcp-001",
+      "name": "Cloud-GCP-Central",
+      "ip": "10.202.1.10",
+      "site": "GCP us-central1",
+      "model": "VOS-Cloud",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CLOUD_GATEWAY"
+    },
+    {
+      "uuid": "edge-hq-001",
+      "name": "Edge-HQ-Chicago",
+      "ip": "10.100.1.10",
+      "site": "Chicago HQ",
+      "model": "CSG-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "SD_WAN_EDGE"
+    },
+    {
+      "uuid": "edge-hq-002",
+      "name": "Edge-HQ-Dallas",
+      "ip": "10.100.2.10",
+      "site": "Dallas Regional HQ",
+      "model": "CSG-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "SD_WAN_EDGE"
+    },
+    {
+      "uuid": "edge-dist-001",
+      "name": "Edge-Distribution-East",
+      "ip": "10.100.3.10",
+      "site": "Memphis Distribution",
+      "model": "CSG-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "SD_WAN_EDGE"
+    },
+    {
+      "uuid": "edge-dist-002",
+      "name": "Edge-Distribution-West",
+      "ip": "10.100.4.10",
+      "site": "Phoenix Distribution",
+      "model": "CSG-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "SD_WAN_EDGE"
+    },
+    {
+      "uuid": "edge-call-001",
+      "name": "Edge-CallCenter",
+      "ip": "10.100.5.10",
+      "site": "Tampa Call Center",
+      "model": "CSG-1000",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "SD_WAN_EDGE"
+    },
+    {
+      "uuid": "br-nyc-001",
+      "name": "NYC-Branch-001",
+      "ip": "10.10.1.1",
+      "site": "New York - Times Square",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-nyc-002",
+      "name": "NYC-Branch-002",
+      "ip": "10.10.1.2",
+      "site": "New York - SoHo",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-nyc-003",
+      "name": "NYC-Branch-003",
+      "ip": "10.10.1.3",
+      "site": "New York - Brooklyn",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-bos-001",
+      "name": "BOS-Branch-001",
+      "ip": "10.10.2.1",
+      "site": "Boston - Downtown",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-bos-002",
+      "name": "BOS-Branch-002",
+      "ip": "10.10.2.2",
+      "site": "Boston - Cambridge",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-phl-001",
+      "name": "PHL-Branch-001",
+      "ip": "10.10.3.1",
+      "site": "Philadelphia - Center City",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-phl-002",
+      "name": "PHL-Branch-002",
+      "ip": "10.10.3.2",
+      "site": "Philadelphia - King of Prussia",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-dc-001",
+      "name": "DC-Branch-001",
+      "ip": "10.10.4.1",
+      "site": "Washington DC - Georgetown",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "CONTROLLER"
+    },
+    {
+      "uuid": "br-nj-001",
+      "name": "NJ-Branch-001",
+      "ip": "10.10.5.1",
+      "site": "New Jersey - Paramus",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-nj-002",
+      "name": "NJ-Branch-002",
+      "ip": "10.10.5.2",
+      "site": "New Jersey - Cherry Hill",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-ct-001",
+      "name": "CT-Branch-001",
+      "ip": "10.10.6.1",
+      "site": "Connecticut - Stamford",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-ri-001",
+      "name": "RI-Branch-001",
+      "ip": "10.10.7.1",
+      "site": "Rhode Island - Providence",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-mia-001",
+      "name": "MIA-Branch-001",
+      "ip": "10.20.1.1",
+      "site": "Miami - Brickell",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-mia-002",
+      "name": "MIA-Branch-002",
+      "ip": "10.20.1.2",
+      "site": "Miami - Aventura",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-mia-003",
+      "name": "MIA-Branch-003",
+      "ip": "10.20.1.3",
+      "site": "Miami - Dadeland",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-atl-001",
+      "name": "ATL-Branch-001",
+      "ip": "10.20.2.1",
+      "site": "Atlanta - Lenox",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-atl-002",
+      "name": "ATL-Branch-002",
+      "ip": "10.20.2.2",
+      "site": "Atlanta - Perimeter",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-clt-001",
+      "name": "CLT-Branch-001",
+      "ip": "10.20.3.1",
+      "site": "Charlotte - SouthPark",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-clt-002",
+      "name": "CLT-Branch-002",
+      "ip": "10.20.3.2",
+      "site": "Charlotte - Northlake",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-orl-001",
+      "name": "ORL-Branch-001",
+      "ip": "10.20.4.1",
+      "site": "Orlando - Mall",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-tpa-001",
+      "name": "TPA-Branch-001",
+      "ip": "10.20.5.1",
+      "site": "Tampa - International",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-ral-001",
+      "name": "RAL-Branch-001",
+      "ip": "10.20.6.1",
+      "site": "Raleigh - Crabtree",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-nash-001",
+      "name": "NASH-Branch-001",
+      "ip": "10.20.7.1",
+      "site": "Nashville - Green Hills",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-jax-001",
+      "name": "JAX-Branch-001",
+      "ip": "10.20.8.1",
+      "site": "Jacksonville - Town Center",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-chi-001",
+      "name": "CHI-Branch-001",
+      "ip": "10.30.1.1",
+      "site": "Chicago - Magnificent Mile",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-chi-002",
+      "name": "CHI-Branch-002",
+      "ip": "10.30.1.2",
+      "site": "Chicago - Oak Brook",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-chi-003",
+      "name": "CHI-Branch-003",
+      "ip": "10.30.1.3",
+      "site": "Chicago - Schaumburg",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-det-001",
+      "name": "DET-Branch-001",
+      "ip": "10.30.2.1",
+      "site": "Detroit - Troy",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-det-002",
+      "name": "DET-Branch-002",
+      "ip": "10.30.2.2",
+      "site": "Detroit - Ann Arbor",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-msp-001",
+      "name": "MSP-Branch-001",
+      "ip": "10.30.3.1",
+      "site": "Minneapolis - Mall of America",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-msp-002",
+      "name": "MSP-Branch-002",
+      "ip": "10.30.3.2",
+      "site": "Minneapolis - Galleria",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-cle-001",
+      "name": "CLE-Branch-001",
+      "ip": "10.30.4.1",
+      "site": "Cleveland - Beachwood",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-col-001",
+      "name": "COL-Branch-001",
+      "ip": "10.30.5.1",
+      "site": "Columbus - Easton",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-ind-001",
+      "name": "IND-Branch-001",
+      "ip": "10.30.6.1",
+      "site": "Indianapolis - Fashion Mall",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-stl-001",
+      "name": "STL-Branch-001",
+      "ip": "10.30.7.1",
+      "site": "St. Louis - Galleria",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-mil-001",
+      "name": "MIL-Branch-001",
+      "ip": "10.30.8.1",
+      "site": "Milwaukee - Mayfair",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-dal-001",
+      "name": "DAL-Branch-001",
+      "ip": "10.40.1.1",
+      "site": "Dallas - NorthPark",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-dal-002",
+      "name": "DAL-Branch-002",
+      "ip": "10.40.1.2",
+      "site": "Dallas - Galleria",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-hou-001",
+      "name": "HOU-Branch-001",
+      "ip": "10.40.2.1",
+      "site": "Houston - Galleria",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-hou-002",
+      "name": "HOU-Branch-002",
+      "ip": "10.40.2.2",
+      "site": "Houston - Memorial",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-phx-001",
+      "name": "PHX-Branch-001",
+      "ip": "10.40.3.1",
+      "site": "Phoenix - Scottsdale",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-phx-002",
+      "name": "PHX-Branch-002",
+      "ip": "10.40.3.2",
+      "site": "Phoenix - Chandler",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sat-001",
+      "name": "SAT-Branch-001",
+      "ip": "10.40.4.1",
+      "site": "San Antonio - La Cantera",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-aus-001",
+      "name": "AUS-Branch-001",
+      "ip": "10.40.5.1",
+      "site": "Austin - Domain",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-la-001",
+      "name": "LA-Branch-001",
+      "ip": "10.50.1.1",
+      "site": "Los Angeles - Beverly Center",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-la-002",
+      "name": "LA-Branch-002",
+      "ip": "10.50.1.2",
+      "site": "Los Angeles - Century City",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sfo-001",
+      "name": "SFO-Branch-001",
+      "ip": "10.50.2.1",
+      "site": "San Francisco - Union Square",
+      "model": "FlexVNF-200",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sfo-002",
+      "name": "SFO-Branch-002",
+      "ip": "10.50.2.2",
+      "site": "San Francisco - Stonestown",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sea-001",
+      "name": "SEA-Branch-001",
+      "ip": "10.50.3.1",
+      "site": "Seattle - Bellevue",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sea-002",
+      "name": "SEA-Branch-002",
+      "ip": "10.50.3.2",
+      "site": "Seattle - University Village",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-sdg-001",
+      "name": "SDG-Branch-001",
+      "ip": "10.50.4.1",
+      "site": "San Diego - Fashion Valley",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-pdx-001",
+      "name": "PDX-Branch-001",
+      "ip": "10.50.5.1",
+      "site": "Portland - Pioneer Place",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-den-001",
+      "name": "DEN-Branch-001",
+      "ip": "10.50.6.1",
+      "site": "Denver - Cherry Creek",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    },
+    {
+      "uuid": "br-lvs-001",
+      "name": "LVS-Branch-001",
+      "ip": "10.50.7.1",
+      "site": "Las Vegas - Forum Shops",
+      "model": "FlexVNF-100",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "type": "BRANCH"
+    }
+  ]
+}

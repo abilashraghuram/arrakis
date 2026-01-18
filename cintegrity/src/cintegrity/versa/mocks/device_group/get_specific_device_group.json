@@ -1,0 +1,27 @@
+{
+  "name": "DC-Controllers",
+  "org": "GlobalRetail",
+  "description": "Datacenter controllers for GlobalRetail organization",
+  "deviceCount": 2,
+  "devices": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "type": "CONTROLLER",
+      "status": "UP",
+      "site": "Ashburn DC"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "type": "CONTROLLER",
+      "status": "UP",
+      "site": "San Jose DC"
+    }
+  ],
+  "policies": [],
+  "created": "2025-01-15T00:00:00Z",
+  "createdBy": "admin@globalretail.com",
+  "lastModified": "2026-01-01T00:00:00Z",
+  "modifiedBy": "admin@globalretail.com"
+}

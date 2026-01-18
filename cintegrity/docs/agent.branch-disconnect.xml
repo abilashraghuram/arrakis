@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="ipsec">
+    <intents>
+        <intent name="branch_reachability" use="debug branch connectivity issues">
+            <parents>
+                <parent>Welcome</parent>
+            </parents>
+            <training>
+                <phrase>Check the connectivity for Branch.</phrase>
+                <phrase>Branch is unreachable</phrase>
+                <phrase>My branch is down.</phrase>
+                <phrase>Not able to connect to branch</phrase>
+            </training>
+            <response>
+                <action>
+                    <actionName>checkBranchReachability</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                         -> Ping Branch from VD.
+                         -> CLI:
+                            - ping <Branch ip>
+                         -> Output:
+                            1. success => Yes
+                            2. failure => No -->
+                </action>
+                <phrase>Checking the connectivity for $Branch</phrase>
+            </response>
+        </intent>
+
+        <intent name="branch_reachable_yes">
+            <parents>
+                <parent>branch_reachability</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkAdminDIR</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <!--
+                     -> Check for Admin homedir and ssh_keydir configuration.
+                     -> CLI:
+                            - show configuration aaa authentication users user admin
+                     -> Output:
+                            - if homedir = '/var/versa/vnms/ncs/homes/admin' and ssh_keydir = '/var/versa/vnms/ncs/homes/admin/.ssh':
+                                then Yes
+                            - else No
+                                                    -->
+                <phrase>Branch reachable from Versa Director. Checking for ADMIN user Directory on Versa Director</phrase>
+            </response>
+        </intent>
+        <intent name="admin_dir_not_configured">
+            <parents>
+                <parent>branch_reachable_yes</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Admin user not configured properly on Versa Director. Please contact support@versa-networks.com for further
+                    help with this issue.</phrase>
+            </response>
+        </intent>
+        <intent name="connect_VD">
+            <parents>
+                <parent>branch_reachable_yes</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkConnectFromVD</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <!--
+                    -> From VD, check connect for appliance.
+                    -> CLI:
+                       - request devices device {appliance} connect.
+                    -> Output:
+                            1. if result is true, display info.
+                               -> info: (Administrator) Connected to {appliance} - {appliance-ip}:2022.
+                            2. if result is false, check for info.
+                                -> if info shows connection to CPE timed out, then Yes.
+                                -> if info shows device as southbound-locked, then again run connect with override-southbound-locked.
+                                    1. request devices device {appliance} connect override-southbound-locked
+                                    2. if info contains BAD Private Key, return No.
+                                    3. else, display info.
+                                                                        -->
+                <phrase>Admin user Directory configured. Checking connect from Versa Director</phrase>
+            </response>
+        </intent>
+        <intent name="connect_VD_yes">
+            <parents>
+                <parent>connect_VD</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <phrase>Looks good!! $Branch connected. Please contact support@versa-networks.com if you need any further assistance.</phrase>
+            </response>
+        </intent>
+        <intent name="connect_VD_timeout" use="connection timedout">
+            <parents>
+                <parent>connect_VD</parent>
+            </parents>
+            <training>
+                <phrase>Connect timeout.</phrase>
+            </training>
+            <response>
+                <action>
+                    <actionName>checkNetConf</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <!--
+                    -> From VD, run the netconf-checker script.
+                    -> CLI:
+                       1. cd /opt/versa/vnms/scripts
+                       2. ./netconf-check.sh {branch-ip} {password}
+                    -> Output:
+                            - display the netconf-checker output
+                                                                        -->
+                <phrase> Running the netconf checker. Please wait as this may take time</phrase>
+            </response>
+        </intent>
+        <intent name="bad_private_key">
+            <parents>
+                <parent>connect_VD</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>BAD private key found while connecting to Versa Director. Please contact support@versa-networks.com if you need any further assistance.</phrase>
+            </response>
+        </intent>
+
+        <intent name="branch_reachable_no">
+            <parents>
+                <parent>branch_reachability</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+		<redirect>director/administration/system/static-route</redirect>
+                <action>
+                    <actionName>checkOverlayRoute</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> Get VD NextHop SouthBound Ip
+                        -> CLI:
+                            1. ip route show match <branch-ip>
+                            2. ping VD NextHop on Southbound
+                        -> Output:
+                            -> if success return Yes
+                            -> else return No
+                                                -->
+                </action>
+                <phrase>$Branch not reachable. Checking for Overlay Route</phrase>
+            </response>
+        </intent>
+
+        <intent name="NH_unreachable">
+            <parents>
+                <parent>branch_reachable_no</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Director NextHop on SouthBound is not reachable. Please contact support@versa-networks.com for further
+                    help with this issue.
+                </phrase>
+            </response>
+        </intent>
+
+        <intent name="controller_connect">
+            <parents>
+                <parent>branch_reachable_no</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkControllerConnectivity</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <!--
+                        -> Get Controller Ip
+                        -> CLI:
+                            1. ping Controller from VD
+                        -> Output:
+                            -> if success return Yes
+                            -> else return No
+                                                -->
+                <phrase>Director NextHop on SouthBound is reachable</phrase>
+            </response>
+        </intent>
+
+        <intent name="controller_connect_no">
+            <parents>
+                <parent>controller_connect</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Unable to connect to Controller. Please contact support@versa-networks.com for further help with
+                    this issue.
+                </phrase>
+            </response>
+        </intent>
+
+        <intent name="controller_connect_yes">
+            <parents>
+                <parent>controller_connect</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkVDSouthBoundReachability</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> Get Controller Southbound Ip Address, routing-instance as provider-org-Control-VR
+                        -> Perform ping to SB Ip with above parameters
+                        -> CLI:
+                            - ping {controller-southbound-ip} routing-instance {provider-org-Control-VR}
+                        -> Output:
+                            - If success return Yes.
+                            - else return No.
+                                                    -->
+                </action>
+                <phrase>Checking Director Southbound reachability</phrase>
+            </response>
+        </intent>
+
+        <intent name="vd_southbound_unreachable">
+            <parents>
+                <parent>controller_connect_yes</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Director Southbound is not reachable from Provider-Org Control VR. Please contact
+                    support@versa-networks.com for further help with this issue.
+                </phrase>
+            </response>
+        </intent>
+
+        <intent name="compare_wan_ip">
+            <parents>
+                <parent>controller_connect_yes</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>compareWANIp</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> Get WAN Ip configured on branch and WAN Ip on controller.
+                        -> Algorithm:
+                            1. Get WAN Ip and their corresponding transport-domain name from transport-addresses container of Branch.
+                                - NAVU Api xpath -> ("/ncs:devices/device[name=''{0}'']/config/system/sd-wan/controllers/controller/transport-addresses/transport-address", appliance)
+                                - WAN Ip -> root.xPathSelect(xpath).leaf('ip-address')
+                                - Transport Domain -> root.xPathSelect(xpath).leaf('transport-domains')
+                            2. First, get WAN Ip and corresponding interface from Controller live-status. Then get interface and corresponding transport-domain using NavuApi. Finally, get a map of WAN Ip and transport-domain on controller.
+                                -   CLI to get WAN Ip and interface -> show devices device {controller} live-status orgs org {organization} sd-wan wan-interfaces
+                                -   NAVU Api xpath to get transport-domain and interface -> ("/ncs:devices/device[name=''{0}'']/config/system/sd-wan/site/wan-interfaces/vni", controllerName)
+                            3. Finally, compare the WAN Ip and T-Domain map for branch and controller.
+                            4. If matches, then Yes.
+                            5. else, report the configuration mismatch.
+                        -->
+                </action>
+                <phrase>Director SouthBound is reachable from Provider-Org Control VR</phrase>
+            </response>
+        </intent>
+
+        <intent name="wan_ip_improper_configured">
+            <parents>
+                <parent>compare_wan_ip</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Please configure the Branch WAN IP accordingly. Please contact support@versa-networks.com for further help with this issue.</phrase>
+            </response>
+        </intent>
+
+        <intent name="branch_TVI_status">
+            <parents>
+                <parent>compare_wan_ip</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkBranchTVIStatus</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> Check for tunnel-type entries and their if-oper-status on Controller:
+                            1. If no entry of any tunnel-type is found, return 'no entry is found for any tunnel-type'.
+                            2. If no entry for secure tunnel-type is found, or if-oper-status of secure tunnel-type is down, then No.
+                            3. Else, return Yes.
+                        -> CLI :
+                            - show devices device {controller} live-status interfaces dynamic-tunnels
+                        -->
+                </action>
+                <phrase>Configured WAN ip on $Branch and WAN ip on controller are same. Checking $Branch TVI status</phrase>
+            </response>
+        </intent>
+
+        <intent name="vxlan_reachability">
+            <parents>
+                <parent>branch_TVI_status</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <action>
+                    <actionName>checkVXLANReachability</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> Ping VxLAN Remote-Ip from Controller.
+                            1. Get VxLAN Remote-Ip, Local-Ip, and vrf.
+                            2. Execute ping from Controller to VxLAN remote-ip with following arguments:
+                                - hostname:remote-ip, routing-instance: vrf, source: local-ip
+                        -> CLI:
+                            - show devices device {controller} live-status interfaces dynamic-tunnels
+                            - request devices device {controller} live-status diagnostics ping
+                        -->
+                </action>
+                <phrase> Checking VxLAN reachability from Control VR</phrase>
+            </response>
+        </intent>
+
+        <intent name="vxlan_reachable_no">
+            <parents>
+                <parent>vxlan_reachability</parent>
+            </parents>
+            <training ref="No" />
+            <response>
+                <action>
+                    <actionName>checkWANReachability</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <phrase>Checking WAN reachability from Controller</phrase>
+            </response>
+        </intent>
+        <intent name="branch_TVI_no_entry" use="no entry for clear-text or secure tvi">
+            <parents>
+                <parent>branch_TVI_status</parent>
+            </parents>
+            <training>
+                <phrase>No entry for clear-text and secure TVI</phrase>
+            </training>
+            <response>
+                <phrase>No entry for clear-text and secure TVI can be found for $Branch. Please contact support@versa-networks.com for further help with this issue.</phrase>
+            </response>
+        </intent>
+        <intent name="engage_support">
+            <parents>
+                <parent>vxlan_reachable_no</parent>
+                <parent>branch_TVI_no_entry</parent>
+                <parent>ipsec_status_yes</parent>
+                <parent>ipsec_status_no</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>Please contact support@versa-networks.com for further help with this issue.</phrase>
+            </response>
+        </intent>
+
+        <intent name="ipsec_status">
+            <parents>
+                <parent>vxlan_reachability</parent>
+                <parent>vxlan_reachable_no</parent>
+                <parent>branch_TVI_no_entry</parent>
+
+            </parents>
+            <training ref="Yes"/>
+            <response>
+		<redirect>appliances/#Controller#/monitoring/organizations/#Organization#!#applianceUUID#/services?selectedTab=IPsec&amp;selectedDetailTab=IKE History&amp;primaryDropDownParam=#Organization#-PostStaging</redirect>
+                <action>
+                    <actionName>checkIPSecIKEHistory</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+                        -> First, check for IKE history. If IKE events has error, report error.
+                            If IKE is empty or has no error, check for IPSec history. If IPSec history
+                            has error, then report error, else report no error is seen in IPSec or IKE
+                            history.
+                        -> CLI:
+                            - Get VxLAN remote-ip, local-ip from above
+                                - show devices device {controller} live-status interfaces dynamic-tunnels
+                            - Get IKE history
+                                - show devices device {controller} live-status orgs org-services {organization} ipsec vpn-profile {organization}-PostStaging vpn-show ike history
+                            - Get IPSec history
+                                - show devices device {controller} live-status orgs org-services {organization} ipsec vpn-profile {organization}-PostStaging vpn-show ipsec history
+                        -->
+                </action>
+                <phrase>Checking the IPSec status</phrase>
+            </response>
+        </intent>
+
+
+        <intent name="ipsec_status_yes">
+            <parents>
+                <parent>ipsec_status</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>compareConfig</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!--
+
+                        -->
+                </action>
+                <phrase>Getting the $Branch and Controller ipsec config and compare them</phrase>
+            </response>
+        </intent>
+        <intent name="ipsec_status_no">
+            <parents>
+                <parent>ipsec_status</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <action>
+                    <actionName>compareConfig</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+
+                </action>
+                <phrase>Getting the $Branch and Controller ipsec config and compare them.</phrase>
+            </response>
+        </intent>
+        <intent name="ipsecTunnel_reachability">
+            <parents>
+                <parent>branch_TVI_status</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <action>
+                    <actionName>checkIPSecTunnelReachability</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                    <!-- ping <remote-ip> routing-instance BLR-TAC-SASE-Control-VR source <local-ip> -->
+                </action>
+                <phrase>$Branch TVI status (clear/ipsec) is up. Checking IPSec tunnel reachability from Control
+                    VR</phrase>
+            </response>
+        </intent>
+
+        <intent name="ipsecTunnel_reachable_no">
+            <parents>
+                <parent>ipsecTunnel_reachability</parent>
+                <parent>ipsecTunnel_reachable_yes</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+		<redirect>appliances/#Controller#/monitoring/organizations/#Organization#!#applianceUUID#/services?selectedTab=SDWAN&amp;selectedDetailTab=SLA Metrics&amp;primaryDropDownParam=#Branch#</redirect>
+                <action>
+                    <actionName>checkSLALoss</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+                </action>
+                <phrase>Checking SLA metric for loss</phrase>
+            </response>
+        </intent>
+        <intent name="ipsecTunnel_reachable_yes">
+            <parents>
+                <parent>ipsecTunnel_reachability</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+		<redirect>appliances/#Branch#/administration/organizations/associations</redirect>
+                <action>
+                    <actionName>checkNGFW</actionName>
+                    <parameter name="Branch"/>
+                    <parameter name="Organization"/>
+
+                </action>
+                <phrase>IPSec tunnel is reachable from Control VR. Checking if NextGen-Firewall or Stateful-Firewall enabled on Controller for
+                    Provider-org and Sub-org</phrase>
+            </response>
+        </intent>
+        <intent name="ngfw_enabled">
+            <parents>
+                <parent>ipsecTunnel_reachable_yes</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+                <phrase>Make sure security policies on Controller allow all Versa Director/Branch management traffic. Please contact support@versa-networks.com for further help with this issue.</phrase>
+            </response>
+        </intent>
+        <intent name="sla_metric_loss_yes">
+            <parents>
+                <parent>ipsecTunnel_reachable_no</parent>
+            </parents>
+            <training ref="Yes"/>
+            <response>
+
+                <phrase>SLA loss is seen over WAN circuit for $Branch. Please contact
+                    support@versa-networks.com for further help with this issue.</phrase>
+            </response>
+        </intent>
+        <intent name="sla_metric_loss_no">
+            <parents>
+                <parent>ipsecTunnel_reachable_no</parent>
+            </parents>
+            <training ref="No"/>
+            <response>
+                <phrase>No SLA loss is seen over WAN circuit for $Branch. Please contact support@versa-networks.com for further help with this issue.
+                </phrase>
+            </response>
+        </intent>
+    </intents>
+</module>

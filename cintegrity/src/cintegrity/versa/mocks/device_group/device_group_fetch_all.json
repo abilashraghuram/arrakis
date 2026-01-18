@@ -1,0 +1,69 @@
+{
+  "totalCount": 5,
+  "deviceGroups": [
+    {
+      "name": "DC-Controllers",
+      "org": "GlobalRetail",
+      "description": "Datacenter controllers",
+      "deviceCount": 2,
+      "devices": [
+        {"uuid": "dc-east-001", "name": "DC-East-Primary"},
+        {"uuid": "dc-west-001", "name": "DC-West-Primary"}
+      ],
+      "created": "2025-01-15T00:00:00Z",
+      "createdBy": "admin@globalretail.com"
+    },
+    {
+      "name": "Regional-Hubs",
+      "org": "GlobalRetail",
+      "description": "Regional hub devices",
+      "deviceCount": 3,
+      "devices": [
+        {"uuid": "hub-northeast-001", "name": "Hub-Northeast"},
+        {"uuid": "hub-southeast-001", "name": "Hub-Southeast"},
+        {"uuid": "hub-west-001", "name": "Hub-West"}
+      ],
+      "created": "2025-01-15T00:00:00Z",
+      "createdBy": "admin@globalretail.com"
+    },
+    {
+      "name": "Cloud-Gateways",
+      "org": "GlobalRetail",
+      "description": "Cloud gateway devices",
+      "deviceCount": 5,
+      "devices": [
+        {"uuid": "cloud-aws-east-001", "name": "Cloud-AWS-East"},
+        {"uuid": "cloud-aws-west-001", "name": "Cloud-AWS-West"},
+        {"uuid": "cloud-azure-east-001", "name": "Cloud-Azure-East"},
+        {"uuid": "cloud-azure-west-001", "name": "Cloud-Azure-West"},
+        {"uuid": "cloud-gcp-001", "name": "Cloud-GCP-Central"}
+      ],
+      "created": "2025-01-15T00:00:00Z",
+      "createdBy": "admin@globalretail.com"
+    },
+    {
+      "name": "Northeast-Branches",
+      "org": "GlobalRetail",
+      "description": "Northeast region branches",
+      "deviceCount": 18,
+      "devices": [
+        {"uuid": "br-nyc-001", "name": "NYC-Branch-001"},
+        {"uuid": "br-bos-001", "name": "BOS-Branch-001"}
+      ],
+      "created": "2025-01-15T00:00:00Z",
+      "createdBy": "admin@globalretail.com"
+    },
+    {
+      "name": "Southeast-Branches",
+      "org": "GlobalRetail",
+      "description": "Southeast region branches",
+      "deviceCount": 15,
+      "devices": [
+        {"uuid": "br-mia-001", "name": "MIA-Branch-001"},
+        {"uuid": "br-atl-001", "name": "ATL-Branch-001"}
+      ],
+      "created": "2025-01-15T00:00:00Z",
+      "createdBy": "admin@globalretail.com"
+    }
+  ]
+}

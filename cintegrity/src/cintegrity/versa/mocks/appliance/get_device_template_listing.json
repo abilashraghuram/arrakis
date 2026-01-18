@@ -1,0 +1,28 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "org": "GlobalRetail",
+  "templates": [
+    {
+      "templateName": "Enterprise-Branch-Gold",
+      "templateType": "DEVICE",
+      "version": "3.2.1",
+      "status": "APPLIED",
+      "lastApplied": "2026-01-05T10:30:00Z"
+    },
+    {
+      "templateName": "Security-Baseline-v2",
+      "templateType": "SECURITY",
+      "version": "2.0.3",
+      "status": "APPLIED",
+      "lastApplied": "2026-01-04T14:20:00Z"
+    },
+    {
+      "templateName": "QoS-Voice-Video",
+      "templateType": "POLICY",
+      "version": "1.8.0",
+      "status": "APPLIED",
+      "lastApplied": "2026-01-03T08:15:00Z"
+    }
+  ]
+}

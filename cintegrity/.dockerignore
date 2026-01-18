@@ -1,0 +1,70 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv
+ENV
+env
+
+# Testing
+.pytest_cache
+.hypothesis
+.coverage
+htmlcov
+.tox
+.nox
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Build artifacts
+*.egg-info
+dist
+build
+.eggs
+
+# Caches
+.ruff_cache
+.mypy_cache
+.pyright
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (not needed in container)
+docs
+*.md
+!README.md
+
+# Tests (not needed in production)
+tests
+
+# Benchmarks and comparisons
+benchmark
+comparison
+
+# Examples
+examples
+
+# Claude config
+.claude
+
+# Misc
+*.zip
+skill-plugin

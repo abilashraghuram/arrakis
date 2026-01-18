@@ -1,0 +1,39 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "model": "FlexVNF-1000",
+  "capabilities": {
+    "sdwan": true,
+    "ngfw": true,
+    "ipsecVpn": true,
+    "sslVpn": true,
+    "urlFiltering": true,
+    "idsIps": true,
+    "antiMalware": true,
+    "dlp": false,
+    "casb": false,
+    "ztna": true,
+    "lteSupport": false,
+    "fiveGSupport": false,
+    "wifi": false,
+    "poe": false,
+    "ha": true
+  },
+  "licenses": {
+    "SDWAN": {
+      "status": "ACTIVE",
+      "expiry": "2027-12-31"
+    },
+    "NGFW": {
+      "status": "ACTIVE",
+      "expiry": "2027-12-31"
+    },
+    "UTM": {
+      "status": "ACTIVE",
+      "expiry": "2027-12-31"
+    }
+  },
+  "maxTunnels": 500,
+  "maxPolicies": 10000,
+  "maxRoutes": 50000
+}

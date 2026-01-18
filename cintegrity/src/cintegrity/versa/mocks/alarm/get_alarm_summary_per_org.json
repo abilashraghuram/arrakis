@@ -1,0 +1,17 @@
+{
+  "org": "GlobalRetail",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "totalActive": 15,
+  "bySeverity": {
+    "CRITICAL": 2,
+    "MAJOR": 5,
+    "MINOR": 5,
+    "WARNING": 3
+  },
+  "byDevice": {
+    "DC-East-Primary": 5,
+    "DC-West-Primary": 4,
+    "Branch-NYC-001": 3,
+    "Branch-LA-001": 3
+  }
+}

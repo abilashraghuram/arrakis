@@ -1,0 +1,39 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "ikeSessions": [
+    {
+      "tunnelName": "MPLS-Primary-Tunnel",
+      "peerIp": "192.168.1.2",
+      "peerDevice": "DC-West-Primary",
+      "peerUuid": "dc-west-001",
+      "localInterface": "vni-0/1",
+      "status": "UP",
+      "ikeVersion": 2,
+      "encryption": "AES-256-GCM",
+      "auth": "PSK",
+      "uptimeSeconds": 604800,
+      "bytesIn": 1073741824,
+      "bytesOut": 536870912,
+      "packetsIn": 1000000,
+      "packetsOut": 500000
+    },
+    {
+      "tunnelName": "Internet-Secondary-Tunnel",
+      "peerIp": "192.168.2.2",
+      "peerDevice": "DC-West-Primary",
+      "peerUuid": "dc-west-001",
+      "localInterface": "vni-0/2",
+      "status": "UP",
+      "ikeVersion": 2,
+      "encryption": "AES-256-GCM",
+      "auth": "PSK",
+      "uptimeSeconds": 604800,
+      "bytesIn": 2147483648,
+      "bytesOut": 1073741824,
+      "packetsIn": 2000000,
+      "packetsOut": 1000000
+    }
+  ]
+}

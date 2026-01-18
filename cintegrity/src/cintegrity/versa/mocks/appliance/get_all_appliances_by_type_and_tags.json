@@ -1,0 +1,833 @@
+{
+  "totalCount": 69,
+  "appliances": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "type": "CONTROLLER",
+      "tags": [
+        "DC",
+        "CONTROLLER"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-1000"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "type": "CONTROLLER",
+      "tags": [
+        "DC",
+        "CONTROLLER"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-1000"
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "type": "HUB",
+      "tags": [
+        "Northeast",
+        "HUB"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-500"
+    },
+    {
+      "uuid": "hub-southeast-001",
+      "name": "Hub-Southeast",
+      "type": "HUB",
+      "tags": [
+        "Southeast",
+        "HUB"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-500"
+    },
+    {
+      "uuid": "hub-west-001",
+      "name": "Hub-West",
+      "type": "HUB",
+      "tags": [
+        "West",
+        "HUB"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-500"
+    },
+    {
+      "uuid": "cloud-aws-east-001",
+      "name": "Cloud-AWS-East",
+      "type": "CLOUD_GATEWAY",
+      "tags": [
+        "Cloud",
+        "CLOUD_GATEWAY"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "CloudVNF"
+    },
+    {
+      "uuid": "cloud-aws-west-001",
+      "name": "Cloud-AWS-West",
+      "type": "CLOUD_GATEWAY",
+      "tags": [
+        "Cloud",
+        "CLOUD_GATEWAY"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "CloudVNF"
+    },
+    {
+      "uuid": "cloud-azure-east-001",
+      "name": "Cloud-Azure-East",
+      "type": "CLOUD_GATEWAY",
+      "tags": [
+        "Cloud",
+        "CLOUD_GATEWAY"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "CloudVNF"
+    },
+    {
+      "uuid": "cloud-azure-west-001",
+      "name": "Cloud-Azure-West",
+      "type": "CLOUD_GATEWAY",
+      "tags": [
+        "Cloud",
+        "CLOUD_GATEWAY"
+      ],
+      "status": "DEGRADED",
+      "org": "GlobalRetail",
+      "model": "CloudVNF"
+    },
+    {
+      "uuid": "cloud-gcp-001",
+      "name": "Cloud-GCP-Central",
+      "type": "CLOUD_GATEWAY",
+      "tags": [
+        "Cloud",
+        "CLOUD_GATEWAY"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "CloudVNF"
+    },
+    {
+      "uuid": "edge-hq-001",
+      "name": "Edge-HQ-Chicago",
+      "type": "SD_WAN_EDGE",
+      "tags": [
+        "Midwest",
+        "SD_WAN_EDGE"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-200"
+    },
+    {
+      "uuid": "edge-hq-002",
+      "name": "Edge-HQ-Dallas",
+      "type": "SD_WAN_EDGE",
+      "tags": [
+        "Southwest",
+        "SD_WAN_EDGE"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-200"
+    },
+    {
+      "uuid": "edge-dist-001",
+      "name": "Edge-Distribution-East",
+      "type": "SD_WAN_EDGE",
+      "tags": [
+        "Southeast",
+        "SD_WAN_EDGE"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-200"
+    },
+    {
+      "uuid": "edge-dist-002",
+      "name": "Edge-Distribution-West",
+      "type": "SD_WAN_EDGE",
+      "tags": [
+        "Southwest",
+        "SD_WAN_EDGE"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-200"
+    },
+    {
+      "uuid": "edge-call-001",
+      "name": "Edge-CallCenter",
+      "type": "SD_WAN_EDGE",
+      "tags": [
+        "Southeast",
+        "SD_WAN_EDGE"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-200"
+    },
+    {
+      "uuid": "br-nyc-001",
+      "name": "NYC-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-nyc-002",
+      "name": "NYC-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-nyc-003",
+      "name": "NYC-Branch-003",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "DEGRADED",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-bos-001",
+      "name": "BOS-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-bos-002",
+      "name": "BOS-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-phl-001",
+      "name": "PHL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-phl-002",
+      "name": "PHL-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-dc-001",
+      "name": "DC-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-nj-001",
+      "name": "NJ-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-nj-002",
+      "name": "NJ-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-ct-001",
+      "name": "CT-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-ri-001",
+      "name": "RI-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Northeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-mia-001",
+      "name": "MIA-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-mia-002",
+      "name": "MIA-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "DOWN",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-mia-003",
+      "name": "MIA-Branch-003",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-atl-001",
+      "name": "ATL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-atl-002",
+      "name": "ATL-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-clt-001",
+      "name": "CLT-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-clt-002",
+      "name": "CLT-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "DEGRADED",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-orl-001",
+      "name": "ORL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-tpa-001",
+      "name": "TPA-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-ral-001",
+      "name": "RAL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-nash-001",
+      "name": "NASH-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-jax-001",
+      "name": "JAX-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southeast",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-chi-001",
+      "name": "CHI-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-chi-002",
+      "name": "CHI-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-chi-003",
+      "name": "CHI-Branch-003",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-det-001",
+      "name": "DET-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-det-002",
+      "name": "DET-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "DEGRADED",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-msp-001",
+      "name": "MSP-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-msp-002",
+      "name": "MSP-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-cle-001",
+      "name": "CLE-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-col-001",
+      "name": "COL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-ind-001",
+      "name": "IND-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-stl-001",
+      "name": "STL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-mil-001",
+      "name": "MIL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Midwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-dal-001",
+      "name": "DAL-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-dal-002",
+      "name": "DAL-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-hou-001",
+      "name": "HOU-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-hou-002",
+      "name": "HOU-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "DEGRADED",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-phx-001",
+      "name": "PHX-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-phx-002",
+      "name": "PHX-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sat-001",
+      "name": "SAT-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-aus-001",
+      "name": "AUS-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "Southwest",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-la-001",
+      "name": "LA-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-la-002",
+      "name": "LA-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sfo-001",
+      "name": "SFO-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sfo-002",
+      "name": "SFO-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sea-001",
+      "name": "SEA-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sea-002",
+      "name": "SEA-Branch-002",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-sdg-001",
+      "name": "SDG-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-pdx-001",
+      "name": "PDX-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-den-001",
+      "name": "DEN-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    },
+    {
+      "uuid": "br-lvs-001",
+      "name": "LVS-Branch-001",
+      "type": "BRANCH",
+      "tags": [
+        "West",
+        "BRANCH"
+      ],
+      "status": "UP",
+      "org": "GlobalRetail",
+      "model": "FlexVNF-100"
+    }
+  ]
+}

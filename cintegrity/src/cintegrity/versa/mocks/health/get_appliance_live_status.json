@@ -1,0 +1,44 @@
+{
+  "deviceName": "NYC-Branch-001",
+  "uuid": "nyc-branch-001",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "system": {
+    "cpuPercent": 35,
+    "memoryPercent": 42,
+    "diskPercent": 28,
+    "uptimeSeconds": 2500000,
+    "loadAverage": [
+      1.25,
+      1.15,
+      1.05
+    ]
+  },
+  "interfaces": [
+    {
+      "name": "vni-0/0",
+      "description": "Management Interface",
+      "adminStatus": "UP",
+      "operStatus": "UP",
+      "speedMbps": 1000,
+      "txBytes": 1500000000,
+      "rxBytes": 1200000000,
+      "txPackets": 15000000,
+      "rxPackets": 12000000,
+      "txErrors": 0,
+      "rxErrors": 0
+    },
+    {
+      "name": "vni-0/1",
+      "description": "WAN Primary",
+      "adminStatus": "UP",
+      "operStatus": "UP",
+      "speedMbps": 10000,
+      "txBytes": 85000000000,
+      "rxBytes": 72000000000,
+      "txPackets": 85000000,
+      "rxPackets": 72000000,
+      "txErrors": 0,
+      "rxErrors": 0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "templateName": "Enterprise-Branch-Gold",
+  "org": "GlobalRetail",
+  "totalDevices": 45,
+  "headers": [
+    {"field": "deviceName", "type": "string", "required": true},
+    {"field": "siteCode", "type": "string", "required": true},
+    {"field": "wanIp", "type": "ipaddress", "required": true},
+    {"field": "lanSubnet", "type": "cidr", "required": true},
+    {"field": "bgpAs", "type": "integer", "required": false}
+  ],
+  "sampleData": [
+    {
+      "device": "DC-East-Primary",
+      "hostname": "dc-east-001",
+      "wan1Ip": "10.0.1.1",
+      "wan2Ip": "10.0.1.2",
+      "lanSubnet": "192.168.1.0/24"
+    },
+    {
+      "device": "NYC-Branch-001",
+      "hostname": "nyc-branch-001",
+      "wan1Ip": "10.1.1.1",
+      "wan2Ip": "10.1.1.2",
+      "lanSubnet": "192.168.2.0/24"
+    }
+  ]
+}

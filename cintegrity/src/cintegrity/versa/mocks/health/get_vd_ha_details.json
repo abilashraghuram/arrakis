@@ -1,0 +1,23 @@
+{
+  "haEnabled": true,
+  "clusterStatus": "HEALTHY",
+  "nodes": [
+    {
+      "name": "vd-primary.globalretail.com",
+      "role": "PRIMARY",
+      "status": "UP",
+      "ip": "10.0.0.10",
+      "lastHeartbeat": "2026-01-08T12:00:00Z"
+    },
+    {
+      "name": "vd-secondary.globalretail.com",
+      "role": "SECONDARY",
+      "status": "UP",
+      "ip": "10.0.0.11",
+      "lastHeartbeat": "2026-01-08T12:00:00Z"
+    }
+  ],
+  "syncStatus": "IN_SYNC",
+  "lastFailover": null,
+  "failoverCount": 0
+}

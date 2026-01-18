@@ -1,0 +1,65 @@
+{
+  "totalCount": 5,
+  "alarms": [
+    {
+      "alarmId": "alarm-001",
+      "deviceName": "MIA-Branch-002",
+      "deviceUuid": "br-mia-002",
+      "org": "GlobalRetail",
+      "severity": "CRITICAL",
+      "type": "DEVICE_UNREACHABLE",
+      "alarmText": "Device unreachable - no heartbeat for 15 minutes",
+      "raisedTime": "2026-01-08T08:45:00Z",
+      "durationMinutes": 195,
+      "impact": "Branch site offline"
+    },
+    {
+      "alarmId": "alarm-002",
+      "deviceName": "NYC-Branch-003",
+      "deviceUuid": "br-nyc-003",
+      "org": "GlobalRetail",
+      "severity": "CRITICAL",
+      "type": "LINK_DOWN",
+      "alarmText": "Primary WAN link down",
+      "raisedTime": "2026-01-08T07:30:00Z",
+      "durationMinutes": 270,
+      "impact": "Branch operating on backup link"
+    },
+    {
+      "alarmId": "alarm-003",
+      "deviceName": "HOU-Branch-002",
+      "deviceUuid": "br-hou-002",
+      "org": "GlobalRetail",
+      "severity": "MAJOR",
+      "type": "HIGH_CPU",
+      "alarmText": "CPU utilization at 94%",
+      "raisedTime": "2026-01-08T10:15:00Z",
+      "durationMinutes": 105,
+      "impact": "Potential service degradation"
+    },
+    {
+      "alarmId": "alarm-004",
+      "deviceName": "DET-Branch-002",
+      "deviceUuid": "br-det-002",
+      "org": "GlobalRetail",
+      "severity": "MAJOR",
+      "type": "HIGH_MEMORY",
+      "alarmText": "Memory utilization at 91%",
+      "raisedTime": "2026-01-08T09:00:00Z",
+      "durationMinutes": 180,
+      "impact": "Memory pressure affecting performance"
+    },
+    {
+      "alarmId": "alarm-005",
+      "deviceName": "CLT-Branch-002",
+      "deviceUuid": "br-clt-002",
+      "org": "GlobalRetail",
+      "severity": "MAJOR",
+      "type": "TUNNEL_FLAP",
+      "alarmText": "IPsec tunnel flapping - 8 state changes in last hour",
+      "raisedTime": "2026-01-08T06:45:00Z",
+      "durationMinutes": 315,
+      "impact": "Intermittent connectivity to hub"
+    }
+  ]
+}

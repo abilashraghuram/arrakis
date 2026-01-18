@@ -1,0 +1,35 @@
+{
+  "alarmId": "alarm-001",
+  "deviceName": "NYC-Branch-001",
+  "deviceUuid": "nyc-branch-001",
+  "org": "GlobalRetail",
+  "type": "LINK_DOWN",
+  "currentSeverity": "WARNING",
+  "currentStatus": "RECOVERING",
+  "history": [
+    {
+      "timestamp": "2026-01-08T08:00:00Z",
+      "severity": "CRITICAL",
+      "status": "RAISED",
+      "description": "Interface vni-0/1 went down"
+    },
+    {
+      "timestamp": "2026-01-08T08:30:00Z",
+      "severity": "CRITICAL",
+      "status": "ACKNOWLEDGED",
+      "description": "Alarm acknowledged by admin"
+    },
+    {
+      "timestamp": "2026-01-08T10:00:00Z",
+      "severity": "MAJOR",
+      "status": "IN_PROGRESS",
+      "description": "Technician dispatched to site"
+    },
+    {
+      "timestamp": "2026-01-08T10:30:00Z",
+      "severity": "WARNING",
+      "status": "RECOVERING",
+      "description": "Link restored, monitoring for stability"
+    }
+  ]
+}

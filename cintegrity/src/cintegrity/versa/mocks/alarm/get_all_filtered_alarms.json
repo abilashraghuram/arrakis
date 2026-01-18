@@ -1,0 +1,39 @@
+{
+  "totalCount": 25,
+  "alarms": [
+    {
+      "alarmId": "alarm-001",
+      "deviceName": "DC-East-Primary",
+      "deviceUuid": "dc-east-001",
+      "org": "GlobalRetail",
+      "severity": "CRITICAL",
+      "type": "LINK_DOWN",
+      "managedObject": "vni-0/1",
+      "alarmText": "Interface vni-0/1 is down",
+      "specificProblem": "Link failure detected",
+      "probableCause": "Physical layer issue or remote device down",
+      "raisedTime": "2026-01-08T10:00:00Z",
+      "lastStatusChange": "2026-01-08T10:05:00Z",
+      "isCleared": false,
+      "ackState": "ACKNOWLEDGED",
+      "handlingState": "IN_PROGRESS"
+    },
+    {
+      "alarmId": "alarm-002",
+      "deviceName": "DC-West-Primary",
+      "deviceUuid": "dc-west-001",
+      "org": "GlobalRetail",
+      "severity": "MAJOR",
+      "type": "HIGH_CPU",
+      "managedObject": "system",
+      "alarmText": "CPU utilization at 92%",
+      "specificProblem": "High CPU utilization",
+      "probableCause": "Excessive traffic or process load",
+      "raisedTime": "2026-01-08T11:00:00Z",
+      "lastStatusChange": "2026-01-08T11:00:00Z",
+      "isCleared": false,
+      "ackState": "UNACKNOWLEDGED",
+      "handlingState": "NEW"
+    }
+  ]
+}

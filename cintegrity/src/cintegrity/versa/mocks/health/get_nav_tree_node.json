@@ -1,0 +1,38 @@
+{
+  "root": {
+    "name": "GlobalRetail",
+    "type": "ORGANIZATION",
+    "children": [
+      {
+        "uuid": "dc-east-001",
+        "name": "DC-East-Primary",
+        "type": "CONTROLLER",
+        "status": "UP"
+      },
+      {
+        "uuid": "dc-west-001",
+        "name": "DC-West-Primary",
+        "type": "CONTROLLER",
+        "status": "UP"
+      },
+      {
+        "uuid": "hub-northeast-001",
+        "name": "Hub-Northeast",
+        "type": "HUB",
+        "status": "UP"
+      },
+      {
+        "uuid": "hub-southeast-001",
+        "name": "Hub-Southeast",
+        "type": "HUB",
+        "status": "UP"
+      },
+      {
+        "uuid": "hub-west-001",
+        "name": "Hub-West",
+        "type": "HUB",
+        "status": "UP"
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "totalCount": 5,
+  "headEnds": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "status": "UP",
+      "role": "PRIMARY",
+      "connectedBranches": 25,
+      "activeTunnels": 50,
+      "throughputMbps": 850.5,
+      "cpuPercent": 45,
+      "memoryPercent": 56,
+      "uptimeSeconds": 3932096
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "status": "UP",
+      "role": "SECONDARY",
+      "connectedBranches": 25,
+      "activeTunnels": 48,
+      "throughputMbps": 780.3,
+      "cpuPercent": 42,
+      "memoryPercent": 52,
+      "uptimeSeconds": 3932096
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "status": "UP",
+      "role": "HUB",
+      "connectedBranches": 18,
+      "activeTunnels": 36,
+      "throughputMbps": 450.2,
+      "cpuPercent": 38,
+      "memoryPercent": 45,
+      "uptimeSeconds": 3500000
+    },
+    {
+      "uuid": "hub-southeast-001",
+      "name": "Hub-Southeast",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "status": "UP",
+      "role": "HUB",
+      "connectedBranches": 15,
+      "activeTunnels": 30,
+      "throughputMbps": 380.8,
+      "cpuPercent": 35,
+      "memoryPercent": 42,
+      "uptimeSeconds": 3400000
+    },
+    {
+      "uuid": "hub-west-001",
+      "name": "Hub-West",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "status": "UP",
+      "role": "HUB",
+      "connectedBranches": 11,
+      "activeTunnels": 22,
+      "throughputMbps": 280.5,
+      "cpuPercent": 32,
+      "memoryPercent": 40,
+      "uptimeSeconds": 3300000
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "instances": [
+    {
+      "name": "CORP-VRF",
+      "type": "virtual-router",
+      "rd": "65000:100",
+      "interfaces": ["vni-0/1", "vni-0/2", "vni-0/3"],
+      "routes": 245,
+      "status": "UP"
+    },
+    {
+      "name": "INTERNET-VRF",
+      "type": "virtual-router",
+      "rd": "65000:200",
+      "interfaces": ["vni-0/4"],
+      "routes": 15,
+      "status": "UP"
+    }
+  ]
+}

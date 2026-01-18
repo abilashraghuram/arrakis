@@ -1,0 +1,70 @@
+{
+  "totalCount": 69,
+  "assets": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "model": "FlexVNF-1000",
+      "serialNumber": "VN-DC-2024-E001",
+      "status": "ACTIVE",
+      "site": "Ashburn DC",
+      "purchaseDate": "2024-01-15",
+      "warrantyExpiry": "2027-01-15",
+      "licenseStatus": "VALID"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "model": "FlexVNF-1000",
+      "serialNumber": "VN-DC-2024-W001",
+      "status": "ACTIVE",
+      "site": "San Jose DC",
+      "purchaseDate": "2024-01-15",
+      "warrantyExpiry": "2027-01-15",
+      "licenseStatus": "VALID"
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "model": "FlexVNF-500",
+      "serialNumber": "VN-HUB-2024-NE01",
+      "status": "ACTIVE",
+      "site": "Newark Hub",
+      "purchaseDate": "2024-01-15",
+      "warrantyExpiry": "2027-01-15",
+      "licenseStatus": "VALID"
+    },
+    {
+      "uuid": "br-nyc-001",
+      "name": "NYC-Branch-001",
+      "org": "GlobalRetail",
+      "type": "BRANCH",
+      "model": "FlexVNF-100",
+      "serialNumber": "VN-BR-NYC-001",
+      "status": "ACTIVE",
+      "site": "New York - Times Square",
+      "purchaseDate": "2024-01-15",
+      "warrantyExpiry": "2027-01-15",
+      "licenseStatus": "VALID"
+    },
+    {
+      "uuid": "cloud-aws-east-001",
+      "name": "Cloud-AWS-East",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "VOS-Cloud",
+      "serialNumber": "VN-CLD-AWS-E001",
+      "status": "ACTIVE",
+      "site": "AWS us-east-1",
+      "purchaseDate": "2024-01-15",
+      "warrantyExpiry": "2027-01-15",
+      "licenseStatus": "VALID"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "types": [
+    {
+      "type": "LINK_DOWN",
+      "category": "CONNECTIVITY",
+      "defaultSeverity": "CRITICAL",
+      "description": "Network link or interface is down"
+    },
+    {
+      "type": "DEVICE_UNREACHABLE",
+      "category": "CONNECTIVITY",
+      "defaultSeverity": "CRITICAL",
+      "description": "Device is unreachable"
+    },
+    {
+      "type": "HIGH_CPU",
+      "category": "PERFORMANCE",
+      "defaultSeverity": "MAJOR",
+      "description": "CPU utilization exceeded threshold"
+    },
+    {
+      "type": "HIGH_MEMORY",
+      "category": "PERFORMANCE",
+      "defaultSeverity": "MAJOR",
+      "description": "Memory utilization exceeded threshold"
+    },
+    {
+      "type": "PATH_DEGRADED",
+      "category": "SDWAN",
+      "defaultSeverity": "MAJOR",
+      "description": "SDWAN path quality degraded"
+    },
+    {
+      "type": "CONFIG_DRIFT",
+      "category": "CONFIGURATION",
+      "defaultSeverity": "WARNING",
+      "description": "Device configuration differs from template"
+    },
+    {
+      "type": "CERTIFICATE_EXPIRY",
+      "category": "SECURITY",
+      "defaultSeverity": "MINOR",
+      "description": "Certificate approaching expiration"
+    }
+  ]
+}

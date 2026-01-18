@@ -1,0 +1,22 @@
+{
+  "hostname": "vd-primary.globalretail.com",
+  "version": "22.1.3",
+  "os": "VOS 22.1.3",
+  "kernel": "5.4.0-generic",
+  "hardware": {
+    "cpuModel": "Intel Xeon E-2288G",
+    "cpuCores": 8,
+    "memoryGb": 64,
+    "diskGb": 1000
+  },
+  "network": {
+    "managementIp": "10.0.0.10",
+    "managementInterface": "eth0"
+  },
+  "timezone": "UTC",
+  "ntpServers": [
+    "time1.google.com",
+    "time2.google.com"
+  ],
+  "ntpStatus": "SYNCHRONIZED"
+}

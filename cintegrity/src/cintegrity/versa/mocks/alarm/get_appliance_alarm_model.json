@@ -1,0 +1,43 @@
+{
+  "modelVersion": "2.1.0",
+  "alarmDefinitions": [
+    {
+      "type": "LINK_DOWN",
+      "severity": "CRITICAL",
+      "category": "CONNECTIVITY",
+      "autoClear": true,
+      "clearCondition": "Interface comes back up"
+    },
+    {
+      "type": "HIGH_CPU",
+      "severity": "MAJOR",
+      "category": "PERFORMANCE",
+      "autoClear": true,
+      "clearCondition": "CPU below threshold for 5 minutes",
+      "thresholdPercent": 90,
+      "durationSeconds": 300
+    },
+    {
+      "type": "HIGH_MEMORY",
+      "severity": "MAJOR",
+      "category": "PERFORMANCE",
+      "autoClear": true,
+      "clearCondition": "Memory below threshold for 5 minutes",
+      "thresholdPercent": 85,
+      "durationSeconds": 300
+    },
+    {
+      "type": "PATH_DEGRADED",
+      "severity": "MAJOR",
+      "category": "SDWAN",
+      "autoClear": true,
+      "clearCondition": "Path metrics return to normal"
+    },
+    {
+      "type": "CONFIG_DRIFT",
+      "severity": "WARNING",
+      "category": "CONFIGURATION",
+      "autoClear": false
+    }
+  ]
+}

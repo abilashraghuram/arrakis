@@ -1,0 +1,95 @@
+{
+  "totalCount": 10,
+  "appliances": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "model": "FlexVNF-1000",
+      "status": "UP",
+      "site": "Ashburn DC"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "model": "FlexVNF-1000",
+      "status": "UP",
+      "site": "San Jose DC"
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "model": "FlexVNF-500",
+      "status": "UP",
+      "site": "Newark Hub"
+    },
+    {
+      "uuid": "hub-southeast-001",
+      "name": "Hub-Southeast",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "model": "FlexVNF-500",
+      "status": "UP",
+      "site": "Atlanta Hub"
+    },
+    {
+      "uuid": "hub-west-001",
+      "name": "Hub-West",
+      "org": "GlobalRetail",
+      "type": "HUB",
+      "model": "FlexVNF-500",
+      "status": "UP",
+      "site": "Los Angeles Hub"
+    },
+    {
+      "uuid": "cloud-aws-east-001",
+      "name": "Cloud-AWS-East",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "CloudVNF",
+      "status": "UP",
+      "site": "AWS us-east-1"
+    },
+    {
+      "uuid": "cloud-aws-west-001",
+      "name": "Cloud-AWS-West",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "CloudVNF",
+      "status": "UP",
+      "site": "AWS us-west-2"
+    },
+    {
+      "uuid": "cloud-azure-east-001",
+      "name": "Cloud-Azure-East",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "CloudVNF",
+      "status": "UP",
+      "site": "Azure East US"
+    },
+    {
+      "uuid": "cloud-azure-west-001",
+      "name": "Cloud-Azure-West",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "CloudVNF",
+      "status": "UP",
+      "site": "Azure West US"
+    },
+    {
+      "uuid": "cloud-gcp-001",
+      "name": "Cloud-GCP-Central",
+      "org": "GlobalRetail",
+      "type": "CLOUD_GATEWAY",
+      "model": "CloudVNF",
+      "status": "UP",
+      "site": "GCP us-central1"
+    }
+  ]
+}

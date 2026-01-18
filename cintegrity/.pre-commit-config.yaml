@@ -1,0 +1,24 @@
+repos:
+  # Keep uv.lock in sync with pyproject.toml
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.9.24
+    hooks:
+      - id: uv-lock
+
+  # Ruff linting and formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # Pyrefly type checking
+  - repo: https://github.com/facebook/pyrefly-pre-commit
+    rev: 0.47.0
+    hooks:
+      - id: pyrefly-check
+        name: Pyrefly (type checking)
+        args: ["--config", "pyproject.toml"]
+        pass_filenames: false
+        language: system

@@ -1,0 +1,695 @@
+{
+  "totalCount": 69,
+  "locations": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "org": "GlobalRetail",
+      "site": "Ashburn DC",
+      "latitude": 39.0438,
+      "longitude": -77.4874,
+      "address": "21715 Filigree Ct, Ashburn, VA 20147",
+      "status": "UP"
+    },
+    {
+      "uuid": "dc-west-001",
+      "name": "DC-West-Primary",
+      "org": "GlobalRetail",
+      "site": "San Jose DC",
+      "latitude": 37.3382,
+      "longitude": -121.8863,
+      "address": "2001 Fortune Dr, San Jose, CA 95131",
+      "status": "UP"
+    },
+    {
+      "uuid": "hub-northeast-001",
+      "name": "Hub-Northeast",
+      "org": "GlobalRetail",
+      "site": "Newark Hub",
+      "latitude": 40.7357,
+      "longitude": -74.1724,
+      "address": "165 Halsey St, Newark, NJ 07102",
+      "status": "UP"
+    },
+    {
+      "uuid": "hub-southeast-001",
+      "name": "Hub-Southeast",
+      "org": "GlobalRetail",
+      "site": "Atlanta Hub",
+      "latitude": 33.749,
+      "longitude": -84.388,
+      "address": "56 Marietta St NW, Atlanta, GA 30303",
+      "status": "UP"
+    },
+    {
+      "uuid": "hub-west-001",
+      "name": "Hub-West",
+      "org": "GlobalRetail",
+      "site": "Los Angeles Hub",
+      "latitude": 34.0522,
+      "longitude": -118.2437,
+      "address": "600 W 7th St, Los Angeles, CA 90017",
+      "status": "UP"
+    },
+    {
+      "uuid": "cloud-aws-east-001",
+      "name": "Cloud-AWS-East",
+      "org": "GlobalRetail",
+      "site": "AWS us-east-1",
+      "latitude": 39.0438,
+      "longitude": -77.4874,
+      "address": "AWS us-east-1 (N. Virginia)",
+      "status": "UP"
+    },
+    {
+      "uuid": "cloud-aws-west-001",
+      "name": "Cloud-AWS-West",
+      "org": "GlobalRetail",
+      "site": "AWS us-west-2",
+      "latitude": 45.5152,
+      "longitude": -122.6784,
+      "address": "AWS us-west-2 (Oregon)",
+      "status": "UP"
+    },
+    {
+      "uuid": "cloud-azure-east-001",
+      "name": "Cloud-Azure-East",
+      "org": "GlobalRetail",
+      "site": "Azure East US",
+      "latitude": 37.3719,
+      "longitude": -79.8164,
+      "address": "Azure East US (Virginia)",
+      "status": "UP"
+    },
+    {
+      "uuid": "cloud-azure-west-001",
+      "name": "Cloud-Azure-West",
+      "org": "GlobalRetail",
+      "site": "Azure West US",
+      "latitude": 37.783,
+      "longitude": -122.417,
+      "address": "Azure West US (California)",
+      "status": "DEGRADED"
+    },
+    {
+      "uuid": "cloud-gcp-001",
+      "name": "Cloud-GCP-Central",
+      "org": "GlobalRetail",
+      "site": "GCP us-central1",
+      "latitude": 41.2619,
+      "longitude": -95.8608,
+      "address": "GCP us-central1 (Iowa)",
+      "status": "UP"
+    },
+    {
+      "uuid": "edge-hq-001",
+      "name": "Edge-HQ-Chicago",
+      "org": "GlobalRetail",
+      "site": "Chicago HQ",
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "address": "233 S Wacker Dr, Chicago, IL 60606",
+      "status": "UP"
+    },
+    {
+      "uuid": "edge-hq-002",
+      "name": "Edge-HQ-Dallas",
+      "org": "GlobalRetail",
+      "site": "Dallas Regional HQ",
+      "latitude": 32.7767,
+      "longitude": -96.797,
+      "address": "1717 Main St, Dallas, TX 75201",
+      "status": "UP"
+    },
+    {
+      "uuid": "edge-dist-001",
+      "name": "Edge-Distribution-East",
+      "org": "GlobalRetail",
+      "site": "Memphis Distribution",
+      "latitude": 35.1495,
+      "longitude": -90.049,
+      "address": "3425 E Holmes Rd, Memphis, TN 38118",
+      "status": "UP"
+    },
+    {
+      "uuid": "edge-dist-002",
+      "name": "Edge-Distribution-West",
+      "org": "GlobalRetail",
+      "site": "Phoenix Distribution",
+      "latitude": 33.4484,
+      "longitude": -112.074,
+      "address": "4000 E Sky Harbor Blvd, Phoenix, AZ 85034",
+      "status": "UP"
+    },
+    {
+      "uuid": "edge-call-001",
+      "name": "Edge-CallCenter",
+      "org": "GlobalRetail",
+      "site": "Tampa Call Center",
+      "latitude": 27.9506,
+      "longitude": -82.4572,
+      "address": "401 E Jackson St, Tampa, FL 33602",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nyc-001",
+      "name": "NYC-Branch-001",
+      "org": "GlobalRetail",
+      "site": "New York - Times Square",
+      "latitude": 40.758,
+      "longitude": -73.9855,
+      "address": "1560 Broadway, New York, NY 10036",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nyc-002",
+      "name": "NYC-Branch-002",
+      "org": "GlobalRetail",
+      "site": "New York - SoHo",
+      "latitude": 40.7233,
+      "longitude": -74.003,
+      "address": "580 Broadway, New York, NY 10012",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nyc-003",
+      "name": "NYC-Branch-003",
+      "org": "GlobalRetail",
+      "site": "New York - Brooklyn",
+      "latitude": 40.6892,
+      "longitude": -73.9857,
+      "address": "445 Albee Square W, Brooklyn, NY 11201",
+      "status": "DEGRADED"
+    },
+    {
+      "uuid": "br-bos-001",
+      "name": "BOS-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Boston - Downtown",
+      "latitude": 42.3601,
+      "longitude": -71.0589,
+      "address": "800 Boylston St, Boston, MA 02199",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-bos-002",
+      "name": "BOS-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Boston - Cambridge",
+      "latitude": 42.3736,
+      "longitude": -71.1097,
+      "address": "100 CambridgeSide Pl, Cambridge, MA 02141",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-phl-001",
+      "name": "PHL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Philadelphia - Center City",
+      "latitude": 39.9526,
+      "longitude": -75.1652,
+      "address": "1901 Market St, Philadelphia, PA 19103",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-phl-002",
+      "name": "PHL-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Philadelphia - King of Prussia",
+      "latitude": 40.0879,
+      "longitude": -75.3903,
+      "address": "160 N Gulph Rd, King of Prussia, PA 19406",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-dc-001",
+      "name": "DC-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Washington DC - Georgetown",
+      "latitude": 38.9072,
+      "longitude": -77.0369,
+      "address": "3222 M St NW, Washington, DC 20007",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nj-001",
+      "name": "NJ-Branch-001",
+      "org": "GlobalRetail",
+      "site": "New Jersey - Paramus",
+      "latitude": 40.9568,
+      "longitude": -74.0698,
+      "address": "400 NJ-17, Paramus, NJ 07652",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nj-002",
+      "name": "NJ-Branch-002",
+      "org": "GlobalRetail",
+      "site": "New Jersey - Cherry Hill",
+      "latitude": 39.9357,
+      "longitude": -75.0291,
+      "address": "2000 NJ-38, Cherry Hill, NJ 08002",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-ct-001",
+      "name": "CT-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Connecticut - Stamford",
+      "latitude": 41.0534,
+      "longitude": -73.5387,
+      "address": "100 Greyrock Pl, Stamford, CT 06901",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-ri-001",
+      "name": "RI-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Rhode Island - Providence",
+      "latitude": 41.824,
+      "longitude": -71.4128,
+      "address": "Providence Place, Providence, RI 02903",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-mia-001",
+      "name": "MIA-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Miami - Brickell",
+      "latitude": 25.7617,
+      "longitude": -80.1918,
+      "address": "701 Brickell Ave, Miami, FL 33131",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-mia-002",
+      "name": "MIA-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Miami - Aventura",
+      "latitude": 25.9564,
+      "longitude": -80.1392,
+      "address": "19501 Biscayne Blvd, Aventura, FL 33180",
+      "status": "DOWN"
+    },
+    {
+      "uuid": "br-mia-003",
+      "name": "MIA-Branch-003",
+      "org": "GlobalRetail",
+      "site": "Miami - Dadeland",
+      "latitude": 25.6904,
+      "longitude": -80.3121,
+      "address": "7535 N Kendall Dr, Miami, FL 33156",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-atl-001",
+      "name": "ATL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Atlanta - Lenox",
+      "latitude": 33.8463,
+      "longitude": -84.3621,
+      "address": "3393 Peachtree Rd NE, Atlanta, GA 30326",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-atl-002",
+      "name": "ATL-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Atlanta - Perimeter",
+      "latitude": 33.926,
+      "longitude": -84.3415,
+      "address": "4400 Ashford Dunwoody Rd, Atlanta, GA 30346",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-clt-001",
+      "name": "CLT-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Charlotte - SouthPark",
+      "latitude": 35.1495,
+      "longitude": -80.828,
+      "address": "4400 Sharon Rd, Charlotte, NC 28211",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-clt-002",
+      "name": "CLT-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Charlotte - Northlake",
+      "latitude": 35.3453,
+      "longitude": -80.8562,
+      "address": "6801 Northlake Mall Dr, Charlotte, NC 28216",
+      "status": "DEGRADED"
+    },
+    {
+      "uuid": "br-orl-001",
+      "name": "ORL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Orlando - Mall",
+      "latitude": 28.4729,
+      "longitude": -81.422,
+      "address": "4200 Conroy Rd, Orlando, FL 32839",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-tpa-001",
+      "name": "TPA-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Tampa - International",
+      "latitude": 27.9506,
+      "longitude": -82.4572,
+      "address": "2223 N West Shore Blvd, Tampa, FL 33607",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-ral-001",
+      "name": "RAL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Raleigh - Crabtree",
+      "latitude": 35.8392,
+      "longitude": -78.6814,
+      "address": "4325 Glenwood Ave, Raleigh, NC 27612",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-nash-001",
+      "name": "NASH-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Nashville - Green Hills",
+      "latitude": 36.1065,
+      "longitude": -86.818,
+      "address": "2126 Abbott Martin Rd, Nashville, TN 37215",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-jax-001",
+      "name": "JAX-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Jacksonville - Town Center",
+      "latitude": 30.2768,
+      "longitude": -81.5218,
+      "address": "10281 Midtown Pkwy, Jacksonville, FL 32246",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-chi-001",
+      "name": "CHI-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Chicago - Magnificent Mile",
+      "latitude": 41.8951,
+      "longitude": -87.6244,
+      "address": "835 N Michigan Ave, Chicago, IL 60611",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-chi-002",
+      "name": "CHI-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Chicago - Oak Brook",
+      "latitude": 41.85,
+      "longitude": -87.9512,
+      "address": "100 Oakbrook Center, Oak Brook, IL 60523",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-chi-003",
+      "name": "CHI-Branch-003",
+      "org": "GlobalRetail",
+      "site": "Chicago - Schaumburg",
+      "latitude": 42.0451,
+      "longitude": -88.0837,
+      "address": "5 Woodfield Mall, Schaumburg, IL 60173",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-det-001",
+      "name": "DET-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Detroit - Troy",
+      "latitude": 42.5583,
+      "longitude": -83.1499,
+      "address": "2800 W Big Beaver Rd, Troy, MI 48084",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-det-002",
+      "name": "DET-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Detroit - Ann Arbor",
+      "latitude": 42.2808,
+      "longitude": -83.743,
+      "address": "3019 Washtenaw Ave, Ann Arbor, MI 48104",
+      "status": "DEGRADED"
+    },
+    {
+      "uuid": "br-msp-001",
+      "name": "MSP-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Minneapolis - Mall of America",
+      "latitude": 44.8549,
+      "longitude": -93.2422,
+      "address": "60 E Broadway, Bloomington, MN 55425",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-msp-002",
+      "name": "MSP-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Minneapolis - Galleria",
+      "latitude": 44.9132,
+      "longitude": -93.3488,
+      "address": "3510 Galleria, Edina, MN 55435",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-cle-001",
+      "name": "CLE-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Cleveland - Beachwood",
+      "latitude": 41.4642,
+      "longitude": -81.4962,
+      "address": "26300 Cedar Rd, Beachwood, OH 44122",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-col-001",
+      "name": "COL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Columbus - Easton",
+      "latitude": 40.0502,
+      "longitude": -82.9152,
+      "address": "160 Easton Town Center, Columbus, OH 43219",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-ind-001",
+      "name": "IND-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Indianapolis - Fashion Mall",
+      "latitude": 39.9074,
+      "longitude": -86.1242,
+      "address": "8702 Keystone Crossing, Indianapolis, IN 46240",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-stl-001",
+      "name": "STL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "St. Louis - Galleria",
+      "latitude": 38.6171,
+      "longitude": -90.4078,
+      "address": "1155 St Louis Galleria, St. Louis, MO 63117",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-mil-001",
+      "name": "MIL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Milwaukee - Mayfair",
+      "latitude": 43.0562,
+      "longitude": -88.062,
+      "address": "2500 N Mayfair Rd, Milwaukee, WI 53226",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-dal-001",
+      "name": "DAL-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Dallas - NorthPark",
+      "latitude": 32.8687,
+      "longitude": -96.7727,
+      "address": "8687 N Central Expy, Dallas, TX 75225",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-dal-002",
+      "name": "DAL-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Dallas - Galleria",
+      "latitude": 32.9318,
+      "longitude": -96.8214,
+      "address": "13350 Dallas Pkwy, Dallas, TX 75240",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-hou-001",
+      "name": "HOU-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Houston - Galleria",
+      "latitude": 29.7385,
+      "longitude": -95.46,
+      "address": "5085 Westheimer Rd, Houston, TX 77056",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-hou-002",
+      "name": "HOU-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Houston - Memorial",
+      "latitude": 29.7756,
+      "longitude": -95.5597,
+      "address": "303 Memorial City Way, Houston, TX 77024",
+      "status": "DEGRADED"
+    },
+    {
+      "uuid": "br-phx-001",
+      "name": "PHX-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Phoenix - Scottsdale",
+      "latitude": 33.5035,
+      "longitude": -111.9286,
+      "address": "7014 E Camelback Rd, Scottsdale, AZ 85251",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-phx-002",
+      "name": "PHX-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Phoenix - Chandler",
+      "latitude": 33.3062,
+      "longitude": -111.8413,
+      "address": "3111 W Chandler Blvd, Chandler, AZ 85226",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sat-001",
+      "name": "SAT-Branch-001",
+      "org": "GlobalRetail",
+      "site": "San Antonio - La Cantera",
+      "latitude": 29.6031,
+      "longitude": -98.6177,
+      "address": "15900 La Cantera Pkwy, San Antonio, TX 78256",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-aus-001",
+      "name": "AUS-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Austin - Domain",
+      "latitude": 30.402,
+      "longitude": -97.7249,
+      "address": "11410 Century Oaks Terrace, Austin, TX 78758",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-la-001",
+      "name": "LA-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Los Angeles - Beverly Center",
+      "latitude": 34.076,
+      "longitude": -118.3765,
+      "address": "8500 Beverly Blvd, Los Angeles, CA 90048",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-la-002",
+      "name": "LA-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Los Angeles - Century City",
+      "latitude": 34.0566,
+      "longitude": -118.4174,
+      "address": "10250 Santa Monica Blvd, Los Angeles, CA 90067",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sfo-001",
+      "name": "SFO-Branch-001",
+      "org": "GlobalRetail",
+      "site": "San Francisco - Union Square",
+      "latitude": 37.7879,
+      "longitude": -122.4074,
+      "address": "865 Market St, San Francisco, CA 94103",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sfo-002",
+      "name": "SFO-Branch-002",
+      "org": "GlobalRetail",
+      "site": "San Francisco - Stonestown",
+      "latitude": 37.7288,
+      "longitude": -122.4779,
+      "address": "3251 20th Ave, San Francisco, CA 94132",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sea-001",
+      "name": "SEA-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Seattle - Bellevue",
+      "latitude": 47.6162,
+      "longitude": -122.2004,
+      "address": "575 Bellevue Square, Bellevue, WA 98004",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sea-002",
+      "name": "SEA-Branch-002",
+      "org": "GlobalRetail",
+      "site": "Seattle - University Village",
+      "latitude": 47.6612,
+      "longitude": -122.2974,
+      "address": "2623 NE University Village St, Seattle, WA 98105",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-sdg-001",
+      "name": "SDG-Branch-001",
+      "org": "GlobalRetail",
+      "site": "San Diego - Fashion Valley",
+      "latitude": 32.7671,
+      "longitude": -117.1651,
+      "address": "7007 Friars Rd, San Diego, CA 92108",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-pdx-001",
+      "name": "PDX-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Portland - Pioneer Place",
+      "latitude": 45.5182,
+      "longitude": -122.6779,
+      "address": "700 SW 5th Ave, Portland, OR 97204",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-den-001",
+      "name": "DEN-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Denver - Cherry Creek",
+      "latitude": 39.7168,
+      "longitude": -104.9536,
+      "address": "3000 E 1st Ave, Denver, CO 80206",
+      "status": "UP"
+    },
+    {
+      "uuid": "br-lvs-001",
+      "name": "LVS-Branch-001",
+      "org": "GlobalRetail",
+      "site": "Las Vegas - Forum Shops",
+      "latitude": 36.1175,
+      "longitude": -115.1738,
+      "address": "3500 Las Vegas Blvd S, Las Vegas, NV 89109",
+      "status": "UP"
+    }
+  ]
+}

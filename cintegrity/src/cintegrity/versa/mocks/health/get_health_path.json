@@ -1,0 +1,37 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "paths": [
+    {
+      "name": "MPLS-Primary-Path",
+      "circuitName": "MPLS-Primary",
+      "localInterface": "vni-0/1",
+      "remoteDevice": "DC-West-Primary",
+      "remoteUuid": "dc-west-001",
+      "status": "UP",
+      "slaClass": "VOICE",
+      "metrics": {
+        "latencyMs": 12,
+        "jitterMs": 1,
+        "packetLossPercent": 0.0,
+        "bandwidthMbps": 500
+      }
+    },
+    {
+      "name": "Internet-Secondary-Path",
+      "circuitName": "Internet-Secondary",
+      "localInterface": "vni-0/2",
+      "remoteDevice": "DC-West-Primary",
+      "remoteUuid": "dc-west-001",
+      "status": "UP",
+      "slaClass": "DATA",
+      "metrics": {
+        "latencyMs": 25,
+        "jitterMs": 2,
+        "packetLossPercent": 0.1,
+        "bandwidthMbps": 1000
+      }
+    }
+  ]
+}

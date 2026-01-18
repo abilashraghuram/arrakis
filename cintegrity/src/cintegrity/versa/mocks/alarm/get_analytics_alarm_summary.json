@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-01-08T12:00:00Z",
+  "period": "24h",
+  "totalRaised": 50,
+  "totalCleared": 45,
+  "mttrMinutes": 45,
+  "bySeverity": {
+    "CRITICAL": 5,
+    "MAJOR": 15,
+    "MINOR": 20,
+    "WARNING": 10
+  },
+  "topAlarmTypes": [
+    {"type": "HIGH_CPU", "count": 15},
+    {"type": "PATH_DEGRADED", "count": 12},
+    {"type": "LINK_DOWN", "count": 8},
+    {"type": "CONFIG_DRIFT", "count": 10},
+    {"type": "CERTIFICATE_EXPIRY", "count": 5}
+  ],
+  "topAffectedDevices": [
+    {"device": "DC-East-Primary", "count": 12},
+    {"device": "DC-West-Primary", "count": 10},
+    {"device": "Branch-NYC-001", "count": 8},
+    {"device": "Branch-LA-001", "count": 7}
+  ]
+}

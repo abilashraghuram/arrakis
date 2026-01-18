@@ -1,0 +1,184 @@
+{
+  "totalCount": 10,
+  "templates": [
+    {
+      "templateId": "tmpl-001",
+      "templateName": "Enterprise-Branch-Gold",
+      "org": "GlobalRetail",
+      "type": "DEVICE",
+      "description": "Premium branch configuration with full security, QoS, and HA features",
+      "version": "3.2.1",
+      "status": "ACTIVE",
+      "devicesBound": 40,
+      "lastModified": "2025-12-15T10:00:00Z",
+      "modifiedBy": "admin@globalretail.com",
+      "features": [
+        "full-mesh-vpn",
+        "voice-qos",
+        "security-utm",
+        "lte-backup",
+        "ha-failover"
+      ]
+    },
+    {
+      "templateId": "tmpl-002",
+      "templateName": "Enterprise-Branch-Silver",
+      "org": "GlobalRetail",
+      "type": "DEVICE",
+      "description": "Standard branch configuration with essential features",
+      "version": "3.1.0",
+      "status": "ACTIVE",
+      "devicesBound": 25,
+      "lastModified": "2025-11-20T14:30:00Z",
+      "modifiedBy": "admin@globalretail.com",
+      "features": [
+        "hub-spoke-vpn",
+        "basic-qos",
+        "security-firewall"
+      ]
+    },
+    {
+      "templateId": "tmpl-003",
+      "templateName": "Hub-Controller-HA",
+      "org": "GlobalRetail",
+      "type": "CONTROLLER",
+      "description": "Regional hub and DC controller configuration with HA",
+      "version": "2.5.0",
+      "status": "ACTIVE",
+      "devicesBound": 5,
+      "lastModified": "2025-10-01T09:00:00Z",
+      "modifiedBy": "netops@globalretail.com",
+      "features": [
+        "full-mesh-vpn",
+        "bgp-routing",
+        "ha-cluster",
+        "route-reflector"
+      ]
+    },
+    {
+      "templateId": "tmpl-004",
+      "templateName": "Security-Baseline-v2",
+      "org": "GlobalRetail",
+      "type": "SECURITY",
+      "description": "Corporate security baseline - firewall, IPS, URL filtering",
+      "version": "2.0.3",
+      "status": "ACTIVE",
+      "devicesBound": 69,
+      "lastModified": "2025-12-01T16:00:00Z",
+      "modifiedBy": "security@globalretail.com",
+      "features": [
+        "zone-firewall",
+        "ips-protection",
+        "url-filtering",
+        "malware-protection"
+      ]
+    },
+    {
+      "templateId": "tmpl-005",
+      "templateName": "QoS-Voice-Video",
+      "org": "GlobalRetail",
+      "type": "POLICY",
+      "description": "Quality of Service policy for voice and video traffic",
+      "version": "1.8.0",
+      "status": "ACTIVE",
+      "devicesBound": 60,
+      "lastModified": "2025-11-15T11:00:00Z",
+      "modifiedBy": "netops@globalretail.com",
+      "features": [
+        "dscp-marking",
+        "traffic-shaping",
+        "bandwidth-reservation",
+        "jitter-buffer"
+      ]
+    },
+    {
+      "templateId": "tmpl-006",
+      "templateName": "LTE-Backup-Failover",
+      "org": "GlobalRetail",
+      "type": "POLICY",
+      "description": "LTE backup link configuration and failover policy",
+      "version": "1.5.2",
+      "status": "ACTIVE",
+      "devicesBound": 45,
+      "lastModified": "2025-10-20T13:00:00Z",
+      "modifiedBy": "netops@globalretail.com",
+      "features": [
+        "lte-interface",
+        "failover-detection",
+        "traffic-steering",
+        "bandwidth-limit"
+      ]
+    },
+    {
+      "templateId": "tmpl-007",
+      "templateName": "Cloud-Gateway-AWS",
+      "org": "GlobalRetail",
+      "type": "CLOUD",
+      "description": "AWS cloud gateway configuration for hybrid connectivity",
+      "version": "1.2.0",
+      "status": "ACTIVE",
+      "devicesBound": 3,
+      "lastModified": "2025-12-10T08:00:00Z",
+      "modifiedBy": "cloudops@globalretail.com",
+      "features": [
+        "aws-vpc-integration",
+        "transit-gateway",
+        "cloud-wan",
+        "auto-scaling"
+      ]
+    },
+    {
+      "templateId": "tmpl-008",
+      "templateName": "Cloud-Gateway-Azure",
+      "org": "GlobalRetail",
+      "type": "CLOUD",
+      "description": "Azure cloud gateway configuration for hybrid connectivity",
+      "version": "1.2.0",
+      "status": "ACTIVE",
+      "devicesBound": 2,
+      "lastModified": "2025-12-10T08:30:00Z",
+      "modifiedBy": "cloudops@globalretail.com",
+      "features": [
+        "azure-vnet-integration",
+        "expressroute",
+        "virtual-wan"
+      ]
+    },
+    {
+      "templateId": "tmpl-009",
+      "templateName": "Compliance-PCI-DSS",
+      "org": "GlobalRetail",
+      "type": "SECURITY",
+      "description": "PCI-DSS compliance template for payment processing locations",
+      "version": "4.0.1",
+      "status": "ACTIVE",
+      "devicesBound": 30,
+      "lastModified": "2025-11-01T10:00:00Z",
+      "modifiedBy": "security@globalretail.com",
+      "features": [
+        "network-segmentation",
+        "encryption-tls13",
+        "audit-logging",
+        "access-control"
+      ]
+    },
+    {
+      "templateId": "tmpl-010",
+      "templateName": "Remote-Access-ZTNA",
+      "org": "GlobalRetail",
+      "type": "SECURITY",
+      "description": "Zero Trust Network Access for remote worker connectivity",
+      "version": "1.0.5",
+      "status": "ACTIVE",
+      "devicesBound": 20,
+      "lastModified": "2025-12-20T15:00:00Z",
+      "modifiedBy": "security@globalretail.com",
+      "features": [
+        "identity-verification",
+        "device-posture",
+        "micro-segmentation",
+        "continuous-auth"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "exportTime": "2026-01-08T12:00:00Z",
+  "format": "JSON",
+  "configuration": {
+    "system": {
+      "hostname": "dc-east-primary",
+      "domain": "globalretail.com",
+      "ntpServers": ["time1.google.com", "time2.google.com"]
+    },
+    "interfaces": {
+      "vni-0/0": {
+        "description": "Management Interface",
+        "ip": "10.0.1.10/24"
+      },
+      "vni-0/1": {
+        "description": "WAN Primary",
+        "ip": "192.168.1.1/30"
+      },
+      "vni-0/2": {
+        "description": "WAN Secondary",
+        "ip": "192.168.2.1/30"
+      },
+      "vni-0/3": {
+        "description": "LAN Interface",
+        "ip": "10.0.0.1/24"
+      }
+    },
+    "routing": {
+      "bgp": {
+        "as": 65000,
+        "neighbors": ["192.168.1.2", "192.168.2.2"]
+      }
+    }
+  }
+}

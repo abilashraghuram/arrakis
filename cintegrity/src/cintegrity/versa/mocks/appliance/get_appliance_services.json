@@ -1,0 +1,41 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "services": [
+    {
+      "name": "versa-confd",
+      "status": "RUNNING",
+      "uptimeSeconds": 3932096,
+      "cpuPercent": 5,
+      "memoryMb": 512
+    },
+    {
+      "name": "versa-lced",
+      "status": "RUNNING",
+      "uptimeSeconds": 3932096,
+      "cpuPercent": 3,
+      "memoryMb": 256
+    },
+    {
+      "name": "versa-flexvnf",
+      "status": "RUNNING",
+      "uptimeSeconds": 3932096,
+      "cpuPercent": 25,
+      "memoryMb": 2048
+    },
+    {
+      "name": "versa-analytics",
+      "status": "RUNNING",
+      "uptimeSeconds": 3932096,
+      "cpuPercent": 8,
+      "memoryMb": 1024
+    },
+    {
+      "name": "versa-ipsec",
+      "status": "RUNNING",
+      "uptimeSeconds": 3932096,
+      "cpuPercent": 4,
+      "memoryMb": 512
+    }
+  ]
+}

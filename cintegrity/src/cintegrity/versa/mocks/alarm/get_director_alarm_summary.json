@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-01-08T12:00:00Z",
+  "totalActive": 1,
+  "bySeverity": {
+    "CRITICAL": 0,
+    "MAJOR": 0,
+    "MINOR": 1,
+    "WARNING": 0
+  },
+  "directorStatus": "HEALTHY"
+}

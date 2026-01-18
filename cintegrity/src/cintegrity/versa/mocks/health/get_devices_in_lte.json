@@ -1,0 +1,29 @@
+{
+  "totalCount": 2,
+  "devices": [
+    {
+      "uuid": "remote-001",
+      "name": "Remote-Branch-001",
+      "org": "GlobalRetail",
+      "lteInterface": "lte-0/0",
+      "carrier": "Verizon",
+      "signalStrengthDbm": -65,
+      "connectionType": "LTE",
+      "dataUsedMb": 15500,
+      "dataLimitMb": 50000,
+      "status": "CONNECTED"
+    },
+    {
+      "uuid": "remote-002",
+      "name": "Remote-Branch-002",
+      "org": "GlobalRetail",
+      "lteInterface": "lte-0/0",
+      "carrier": "AT&T",
+      "signalStrengthDbm": -72,
+      "connectionType": "LTE",
+      "dataUsedMb": 12300,
+      "dataLimitMb": 50000,
+      "status": "CONNECTED"
+    }
+  ]
+}

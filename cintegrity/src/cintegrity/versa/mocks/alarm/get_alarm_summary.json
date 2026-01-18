@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-01-08T12:00:00Z",
+  "totalActive": 25,
+  "bySeverity": {
+    "CRITICAL": 2,
+    "MAJOR": 5,
+    "MINOR": 8,
+    "WARNING": 10
+  },
+  "byType": {
+    "LINK_DOWN": 5,
+    "HIGH_CPU": 8,
+    "PATH_DEGRADED": 7,
+    "CONFIG_DRIFT": 3,
+    "CERTIFICATE_EXPIRY": 2
+  },
+  "clearedLast24h": 150,
+  "mttrMinutes": 45
+}

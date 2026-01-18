@@ -1,0 +1,32 @@
+{
+  "totalCount": 3,
+  "devices": [
+    {
+      "uuid": "dc-east-001",
+      "name": "DC-East-Primary",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "templates": ["Enterprise-Branch-Gold", "Security-Baseline-v2"],
+      "lastDeploy": "2026-01-05T10:30:00Z",
+      "deployStatus": "SUCCESS"
+    },
+    {
+      "uuid": "nyc-branch-001",
+      "name": "NYC-Branch-001",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "templates": ["Enterprise-Branch-Gold"],
+      "lastDeploy": "2026-01-08T08:00:00Z",
+      "deployStatus": "IN_PROGRESS"
+    },
+    {
+      "uuid": "bos-branch-001",
+      "name": "BOS-Branch-001",
+      "org": "GlobalRetail",
+      "status": "UP",
+      "templates": ["Enterprise-Branch-Silver"],
+      "lastDeploy": "2026-01-01T00:00:00Z",
+      "deployStatus": "PENDING"
+    }
+  ]
+}

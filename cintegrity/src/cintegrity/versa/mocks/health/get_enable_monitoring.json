@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "pollIntervalSeconds": 60,
+  "metricsRetentionDays": 30,
+  "alertingEnabled": true,
+  "monitoredServices": ["health", "metrics", "alarms", "logs"]
+}

@@ -1,0 +1,40 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "org": "GlobalRetail",
+  "status": "UP",
+  "templates": [
+    {
+      "templateName": "Enterprise-Branch-Gold",
+      "type": "DEVICE",
+      "status": "APPLIED",
+      "version": "3.2.1"
+    },
+    {
+      "templateName": "Security-Baseline-v2",
+      "type": "SECURITY",
+      "status": "APPLIED",
+      "version": "2.0.3"
+    }
+  ],
+  "bindData": {
+    "siteCode": "DC-EAST",
+    "wanIp": "10.0.1.1",
+    "lanSubnet": "192.168.1.0/24",
+    "bgpAs": "65001"
+  },
+  "deployHistory": [
+    {
+      "timestamp": "2026-01-05T10:30:00Z",
+      "user": "admin@globalretail.com",
+      "status": "SUCCESS",
+      "templates": ["Enterprise-Branch-Gold", "Security-Baseline-v2"]
+    },
+    {
+      "timestamp": "2025-12-15T14:00:00Z",
+      "user": "admin@globalretail.com",
+      "status": "SUCCESS",
+      "templates": ["Enterprise-Branch-Gold"]
+    }
+  ]
+}

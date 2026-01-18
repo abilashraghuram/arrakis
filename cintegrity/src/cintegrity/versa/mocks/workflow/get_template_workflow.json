@@ -1,0 +1,20 @@
+{
+  "templateName": "Enterprise-Branch-Gold",
+  "org": "GlobalRetail",
+  "type": "DEVICE",
+  "version": "3.2.1",
+  "description": "Gold tier branch template with full security features",
+  "created": "2025-06-15T00:00:00Z",
+  "createdBy": "admin@globalretail.com",
+  "lastModified": "2026-01-01T00:00:00Z",
+  "modifiedBy": "admin@globalretail.com",
+  "workflowStages": [
+    {"stage": "VALIDATION", "completed": true},
+    {"stage": "CONFIGURATION", "completed": true},
+    {"stage": "POLICIES", "completed": true},
+    {"stage": "DEPLOYMENT", "completed": true},
+    {"stage": "VERIFICATION", "completed": false}
+  ],
+  "currentStage": "VERIFICATION",
+  "devicesBound": 45
+}

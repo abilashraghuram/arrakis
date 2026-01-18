@@ -1,0 +1,26 @@
+{
+  "alarmId": "alarm-001",
+  "deviceName": "DC-East-Primary",
+  "deviceUuid": "dc-east-001",
+  "org": "GlobalRetail",
+  "severity": "CRITICAL",
+  "type": "LINK_DOWN",
+  "handlingState": "IN_PROGRESS",
+  "ackState": "ACKNOWLEDGED",
+  "assignee": "admin@globalretail.com",
+  "notes": [],
+  "history": [
+    {
+      "timestamp": "2026-01-08T10:00:00Z",
+      "action": "RAISED",
+      "user": "system",
+      "details": "Link down detected on vni-0/1"
+    },
+    {
+      "timestamp": "2026-01-08T10:05:00Z",
+      "action": "ACKNOWLEDGED",
+      "user": "admin@globalretail.com",
+      "details": "Investigating issue"
+    }
+  ]
+}

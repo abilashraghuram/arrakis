@@ -1,0 +1,9 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "pullEnabled": true,
+  "pollIntervalSeconds": 60,
+  "lastPoll": "2026-01-08T12:00:00Z",
+  "nextPoll": "2026-01-08T12:01:00Z",
+  "metricsEnabled": ["cpu", "memory", "disk", "interfaces", "sessions"]
+}

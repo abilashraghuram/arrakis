@@ -1,0 +1,44 @@
+{
+  "models": [
+    {
+      "model": "FlexVNF-100",
+      "type": "BRANCH",
+      "description": "Branch appliance - small",
+      "maxTunnels": 50,
+      "maxBandwidthMbps": 500,
+      "deviceCount": 45
+    },
+    {
+      "model": "FlexVNF-200",
+      "type": "BRANCH",
+      "description": "Branch appliance - medium",
+      "maxTunnels": 100,
+      "maxBandwidthMbps": 1000,
+      "deviceCount": 12
+    },
+    {
+      "model": "FlexVNF-500",
+      "type": "HUB",
+      "description": "Hub appliance",
+      "maxTunnels": 250,
+      "maxBandwidthMbps": 2500,
+      "deviceCount": 3
+    },
+    {
+      "model": "FlexVNF-1000",
+      "type": "CONTROLLER",
+      "description": "Controller appliance",
+      "maxTunnels": 500,
+      "maxBandwidthMbps": 5000,
+      "deviceCount": 2
+    },
+    {
+      "model": "VOS-Cloud",
+      "type": "CLOUD_GATEWAY",
+      "description": "Cloud gateway appliance",
+      "maxTunnels": 200,
+      "maxBandwidthMbps": 10000,
+      "deviceCount": 5
+    }
+  ]
+}

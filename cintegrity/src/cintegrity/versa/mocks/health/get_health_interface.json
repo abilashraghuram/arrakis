@@ -1,0 +1,37 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "interfaces": [
+    {
+      "name": "vni-0/1",
+      "description": "WAN Primary",
+      "adminStatus": "UP",
+      "operStatus": "UP",
+      "health": "GOOD",
+      "speedMbps": 10000,
+      "duplex": "FULL",
+      "mtu": 1500
+    },
+    {
+      "name": "vni-0/2",
+      "description": "WAN Secondary",
+      "adminStatus": "UP",
+      "operStatus": "UP",
+      "health": "GOOD",
+      "speedMbps": 10000,
+      "duplex": "FULL",
+      "mtu": 1500
+    },
+    {
+      "name": "vni-0/3",
+      "description": "LAN Interface",
+      "adminStatus": "UP",
+      "operStatus": "UP",
+      "health": "GOOD",
+      "speedMbps": 1000,
+      "duplex": "FULL",
+      "mtu": 1500
+    }
+  ]
+}

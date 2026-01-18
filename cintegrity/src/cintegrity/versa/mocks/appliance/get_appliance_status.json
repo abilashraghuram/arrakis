@@ -1,0 +1,28 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "org": "GlobalRetail",
+  "status": "UP",
+  "pingStatus": "REACHABLE",
+  "controllerStatus": "CONNECTED",
+  "controller": "vd-primary.globalretail.com",
+  "softwareVersion": "22.1.3",
+  "uptimeSeconds": 3932096,
+  "lastSeen": "2026-01-08T12:00:00Z",
+  "health": {
+    "overall": "GOOD",
+    "cpu": "GOOD",
+    "memory": "GOOD",
+    "disk": "GOOD",
+    "interfaces": "GOOD",
+    "paths": "GOOD",
+    "services": "GOOD"
+  },
+  "metrics": {
+    "cpuPercent": 45,
+    "memoryPercent": 56,
+    "diskPercent": 25,
+    "activeSessions": 1250,
+    "throughputMbps": 850.5
+  }
+}

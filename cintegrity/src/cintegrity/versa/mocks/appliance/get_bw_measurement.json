@@ -1,0 +1,25 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "measurements": [
+    {
+      "interface": "vni-0/1",
+      "circuit": "MPLS-Primary",
+      "configuredBandwidthMbps": 500,
+      "measuredDownloadMbps": 450.5,
+      "measuredUploadMbps": 420.3,
+      "lastTest": "2026-01-08T10:00:00Z",
+      "status": "GOOD"
+    },
+    {
+      "interface": "vni-0/2",
+      "circuit": "Internet-Secondary",
+      "configuredBandwidthMbps": 1000,
+      "measuredDownloadMbps": 950.2,
+      "measuredUploadMbps": 890.8,
+      "lastTest": "2026-01-08T10:00:00Z",
+      "status": "GOOD"
+    }
+  ]
+}

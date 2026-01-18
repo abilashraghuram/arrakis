@@ -1,0 +1,24 @@
+{
+  "totalAppliances": 69,
+  "byStatus": {
+    "UP": 63,
+    "DOWN": 1,
+    "DEGRADED": 5,
+    "UNREACHABLE": 0
+  },
+  "byType": {
+    "CONTROLLER": 2,
+    "HUB": 3,
+    "CLOUD_GATEWAY": 5,
+    "SD_WAN_EDGE": 5,
+    "BRANCH": 54
+  },
+  "bySyncStatus": {
+    "IN_SYNC": 65,
+    "OUT_OF_SYNC": 3,
+    "PENDING": 1
+  },
+  "byOrg": {
+    "GlobalRetail": 69
+  }
+}

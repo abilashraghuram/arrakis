@@ -1,0 +1,58 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "model": "FlexVNF-1000",
+  "serialNumber": "VN-DC-2024-E001",
+  "cpu": {
+    "model": "Intel Xeon E-2276G",
+    "cores": 6,
+    "frequencyMhz": 3800,
+    "usagePercent": 45
+  },
+  "memory": {
+    "totalGb": 32,
+    "usedGb": 18.5,
+    "usagePercent": 56
+  },
+  "disk": {
+    "totalGb": 500,
+    "usedGb": 125,
+    "usagePercent": 25
+  },
+  "interfaces": [
+    {
+      "name": "vni-0/0",
+      "mac": "00:50:56:ab:cd:01",
+      "speedMbps": 1000,
+      "type": "MANAGEMENT"
+    },
+    {
+      "name": "vni-0/1",
+      "mac": "00:50:56:ab:cd:02",
+      "speedMbps": 10000,
+      "type": "WAN"
+    },
+    {
+      "name": "vni-0/2",
+      "mac": "00:50:56:ab:cd:03",
+      "speedMbps": 10000,
+      "type": "WAN"
+    },
+    {
+      "name": "vni-0/3",
+      "mac": "00:50:56:ab:cd:04",
+      "speedMbps": 1000,
+      "type": "LAN"
+    }
+  ],
+  "powerSupply": {
+    "status": "OK",
+    "inputVoltage": 120,
+    "outputWatts": 350
+  },
+  "temperature": {
+    "cpuCelsius": 52,
+    "systemCelsius": 38,
+    "status": "NORMAL"
+  }
+}

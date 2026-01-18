@@ -1,0 +1,19 @@
+{
+  "analysis_config": {
+    "max_rows": 10000,
+    "date_format": "%Y-%m-%d",
+    "decimal_places": 2,
+    "missing_value_threshold": 0.5
+  },
+  "chart_settings": {
+    "width": 800,
+    "height": 600,
+    "style": "seaborn",
+    "dpi": 100
+  },
+  "export_formats": [
+    "markdown",
+    "html",
+    "pdf"
+  ]
+}

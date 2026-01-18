@@ -1,0 +1,65 @@
+{
+  "totalCount": 5,
+  "logs": [
+    {
+      "logId": "log-001",
+      "timestamp": "2026-01-08T10:30:00Z",
+      "user": "admin@globalretail.com",
+      "action": "CONFIG_CHANGE",
+      "targetType": "DEVICE",
+      "targetId": "dc-east-001",
+      "targetName": "DC-East-Primary",
+      "details": "Updated QoS policy",
+      "sourceIp": "10.0.0.100",
+      "result": "SUCCESS"
+    },
+    {
+      "logId": "log-002",
+      "timestamp": "2026-01-08T09:15:00Z",
+      "user": "netops@globalretail.com",
+      "action": "DEPLOY_TEMPLATE",
+      "targetType": "DEVICE",
+      "targetId": "br-nyc-001",
+      "targetName": "NYC-Branch-001",
+      "details": "Deployed Enterprise-Branch-Gold template",
+      "sourceIp": "10.0.0.101",
+      "result": "SUCCESS"
+    },
+    {
+      "logId": "log-003",
+      "timestamp": "2026-01-08T08:00:00Z",
+      "user": "admin@globalretail.com",
+      "action": "USER_LOGIN",
+      "targetType": "SYSTEM",
+      "targetId": "director-001",
+      "targetName": "Director",
+      "details": "User logged in from 10.0.0.100",
+      "sourceIp": "10.0.0.100",
+      "result": "SUCCESS"
+    },
+    {
+      "logId": "log-004",
+      "timestamp": "2026-01-07T16:45:00Z",
+      "user": "security@globalretail.com",
+      "action": "POLICY_UPDATE",
+      "targetType": "TEMPLATE",
+      "targetId": "security-baseline-v2",
+      "targetName": "Security-Baseline-v2",
+      "details": "Updated firewall rules",
+      "sourceIp": "10.0.0.102",
+      "result": "SUCCESS"
+    },
+    {
+      "logId": "log-005",
+      "timestamp": "2026-01-07T14:30:00Z",
+      "user": "netops@globalretail.com",
+      "action": "DEVICE_REBOOT",
+      "targetType": "DEVICE",
+      "targetId": "br-bos-002",
+      "targetName": "BOS-Branch-002",
+      "details": "Scheduled maintenance reboot",
+      "sourceIp": "10.0.0.101",
+      "result": "SUCCESS"
+    }
+  ]
+}

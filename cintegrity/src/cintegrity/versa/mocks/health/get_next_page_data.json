@@ -1,0 +1,8 @@
+{
+  "queryId": "query-12345",
+  "totalCount": 69,
+  "offset": 0,
+  "limit": 20,
+  "hasMore": true,
+  "data": []
+}

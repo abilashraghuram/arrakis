@@ -1,0 +1,255 @@
+codemode-py/examples/versa_networks_conductor on  main [!?] via  v3.13.9 (codemode-py) 12s 
+❯ uv run agent.py
+tools [StructuredTool(name='list_tools', description='List all available tools in a tree format showing the virtual filesystem.', args_schema=<class 'langchain_core.utils.pydantic.list_tools'>, func=<function create_agent_tools.<locals>.list_tools at 0x1100722a0>), StructuredTool(name='read_tool', description="Read a tool's full specification at the given virtual path.", args_schema=<class 'langchain_core.utils.pydantic.read_tool'>, func=<function create_agent_tools.<locals>.read_tool at 0x110072340>), StructuredTool(name='execute_workflow', description='Execute restricted Python workflow code.\n\nSee system prompt for full dialect rules. Key requirements:\n- Define `def workflow():` with imports inside\n- Import from `cintegrity.tools` only\n- Use keyword args for tool calls', args_schema=<class 'langchain_core.utils.pydantic.execute_workflow'>, func=<function create_agent_tools.<locals>.execute_workflow at 0x1100723e0>), StructuredTool(name='execute_tool', description='Execute a single tool by name with JSON args.', args_schema=<class 'cintegrity.adapters.langchain.build_langchain_tools.<locals>.ExecuteToolArgs'>, func=<function create_agent_tools.<locals>.execute_tool at 0x110072480>), StructuredTool(name='list_skills', description='List all available skills with metadata.', args_schema=<class 'langchain_core.utils.pydantic.list_skills'>, func=<function create_agent_tools.<locals>.list_skills at 0x110072520>), StructuredTool(name='activate_skill', description='Activate a skill by loading full content.', args_schema=<class 'langchain_core.utils.pydantic.activate_skill'>, func=<function create_agent_tools.<locals>.activate_skill at 0x1100725c0>), StructuredTool(name='deactivate_skill', description='Deactivate a skill to free context.', args_schema=<class 'langchain_core.utils.pydantic.deactivate_skill'>, func=<function create_agent_tools.<locals>.deactivate_skill at 0x110072660>), StructuredTool(name='read_skill_resource', description="Read any file from a skill's scripts/, references/, or assets/ directories.", args_schema=<class 'cintegrity.adapters.langchain.build_langchain_tools.<locals>.ReadSkillResourceArgs'>, func=<function create_agent_tools.<locals>.read_skill_resource at 0x110072700>)]
+Agent: Branch-101 in New York is reporting connectivity issues.
+
+
+Calling tools: ['list_tools']
+
+
+Agent: /
+└── function_calls/
+    ├── device_group_fetch_all
+    ├── device_workflow_fetch_all
+    ├── export_appliance_configuration
+    ├── filter_paginate_alarm
+    ├── get_alarm_handling
+    ├── get_alarm_summary
+    ├── get_alarm_summary_per_org
+    ├── get_alarm_types
+    ├── get_all_appliance_names
+    ├── get_all_appliance_status
+    ├── get_all_appliances_basic_details
+    ├── get_all_appliances_by_type_and_tags
+    ├── get_all_appliances_lite
+    ├── get_all_appliances_liteview
+    ├── get_all_assets
+    ├── get_all_filtered_alarms
+    ├── get_all_model_numbers
+    ├── get_analytics_alarm_summary
+    ├── get_analytics_alarms
+    ├── get_appliance_alarm_model
+    ├── get_appliance_alarm_types
+    ├── get_appliance_capabilities
+    ├── get_appliance_details_by_uuid
+    ├── get_appliance_hardware
+    ├── get_appliance_live_status
+    ├── get_appliance_locations
+    ├── get_appliance_services
+    ├── get_appliance_status
+    ├── get_appliance_status_brief
+    ├── get_appliance_sync_status
+    ├── get_appliance_violations
+    ├── get_appliances_summary
+    ├── get_audit_logs
+    ├── get_bw_measurement
+    ├── get_device_alarm_summary
+    ├── get_device_status_pulling_enabled
+    ├── get_device_template_listing
+    ├── get_devices_in_lte
+    ├── get_director_alarm_summary
+    ├── get_director_alarms
+    ├── get_director_fail_over_alarms
+    ├── get_director_ha_alarms
+    ├── get_enable_monitoring
+    ├── get_head_end_status
+    ├── get_health_ike
+    ├── get_health_interface
+    ├── get_health_path
+    ├── get_imp_alarm_summary
+    ├── get_imp_alarms
+    ├── get_nav_tree_node
+    ├── get_next_page_data
+    ├── get_routing_instance_information
+    ├── get_single_appliance_status
+    ├── get_specific_device_group
+    ├── get_specific_device_workflow
+    ├── get_specific_template_workflow
+    ├── get_status_change
+    ├── get_sys_details
+    ├── get_sys_uptime
+    ├── get_template_bind_data_header_and_count
+    ├── get_template_workflow
+    ├── get_vd_ha_details
+    ├── get_vd_package_info
+    ├── get_vd_status
+    ├── search_appliance_by_name
+    ├── show_templates_associated_to_device
+    └── template_fetch_all
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "search_appliance_by_name", "description": "\nSearch Appliance By Name\n\nMethod: GET\nURL: /vnms/appliance/applianceByName\nParameters: limit, name, offset\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {"limit": {"title": "Limit", "type": "string"}, "name": {"title": "Name", "type": "string"}, "offset": {"title": "Offset", "type": "string"}}, "required": ["limit", "name", "offset"], "title": "search_appliance_by_nameArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "get_appliance_live_status", "description": "\nGet Appliance Live Status\n\nMethod: GET\nURL: /vnms/dashboard/appliance/{applianceName}/live\nParameters: applianceName, command, decode, fetch, filters, uuid\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {"applianceName": {"title": "Appliancename", "type": "string"}, "command": {"title": "Command", "type": "string"}, "decode": {"title": "Decode", "type": "string"}, "fetch": {"title": "Fetch", "type": "string"}, "filters": {"title": "Filters", "type": "string"}, "uuid": {"title": "Uuid", "type": "string"}}, "required": ["applianceName", "command", "decode", "fetch", "filters", "uuid"], "title": "get_appliance_live_statusArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "get_appliance_status_brief", "description": "\nGet Appliance Status Brief\n\nMethod: GET\nURL: /vnms/dashboard/applianceStatus/{applianceUUID}/brief\nParameters: applianceUUID\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {"applianceUUID": {"title": "Applianceuuid", "type": "string"}}, "required": ["applianceUUID"], "title": "get_appliance_status_briefArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "get_appliance_details_by_uuid", "description": "\nGet Appliance Details by UUID\n\nMethod: GET\nURL: /vnms/dashboard/appliance/{Uuid}\nParameters: Uuid\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {"Uuid": {"title": "Uuid", "type": "string"}}, "required": ["Uuid"], "title": "get_appliance_details_by_uuidArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "get_director_alarms", "description": "\nGet Director Alarms\n\nMethod: GET\nURL: /vnms/fault/director/alarms\nParameters: search_string, severity\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {"search_string": {"title": "Search String", "type": "string"}, "severity": {"title": "Severity", "type": "string"}}, "required": ["search_string", "severity"], "title": "get_director_alarmsArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['read_tool']
+
+
+Agent: {"name": "get_imp_alarms", "description": "\nGet IMP Alarms\n\nMethod: GET\nURL: /vnms/fault/director/pop-up\nParameters: None\n\nReturns:\n    JSON response from the API\n", "inputSchema": {"properties": {}, "title": "get_imp_alarmsArguments", "type": "object"}, "outputSchema": {}}
+
+
+Calling tools: ['execute_workflow']
+
+
+{
+  "ts": "2025-12-20T23:03:57.457003+00:00",
+  "level": "INFO",
+  "logger": "cintegrity.tool.execute_workflow",
+  "message": "workflow_execute_start",
+  "taskName": "Task-3",
+  "event": "workflow_execute_start",
+  "run_id": "4f691bbcb14a4514a15fc969ff174c84",
+  "planner_code_len": 1272,
+  "tool_count": 67
+}
+
+============================================================
+GENERATED WORKFLOW CODE (run_id=4f691bbc...):
+============================================================
+def workflow():
+    from cintegrity.tools import search_appliance_by_name, get_appliance_status_brief, get_appliance_details_by_uuid, get_director_alarms
+
+    sr = search_appliance_by_name(limit="10", name="Branch-101", offset="0")
+    appliances = sr.get("data")
+    if appliances is None:
+        appliances = sr.get("appliances")
+    if appliances is None:
+        appliances = sr.get("result")
+    if appliances is None:
+        appliances = []
+
+    if len(appliances) == 0:
+        return {"found": False, "message": "No appliance found matching name Branch-101", "search_response": sr}
+
+    ap = appliances[0]
+    uuid = ap.get("uuid")
+    if uuid is None:
+        uuid = ap.get("applianceUUID")
+    if uuid is None:
+        uuid = ap.get("id")
+
+    details = None
+    status = None
+    if uuid is not None:
+        details = get_appliance_details_by_uuid(Uuid=str(uuid))
+        status = get_appliance_status_brief(applianceUUID=str(uuid))
+
+    alarms = get_director_alarms(search_string="Branch-101", severity="")
+
+    return {
+        "found": True,
+        "match": ap,
+        "uuid": uuid,
+        "details": details,
+        "status_brief": status,
+        "director_alarms": alarms,
+        "note": "If multiple matches exist, only the first is used."
+    }
+
+============================================================
+
+{
+  "ts": "2025-12-20T23:03:57.457410+00:00",
+  "level": "DEBUG",
+  "logger": "cintegrity.tool.execute_workflow",
+  "message": "workflow_planner_code",
+  "taskName": "Task-3",
+  "event": "workflow_planner_code",
+  "run_id": "4f691bbcb14a4514a15fc969ff174c84",
+  "planner_code": "def workflow():\n    from cintegrity.tools import search_appliance_by_name, get_appliance_status_brief, get_appliance_details_by_uuid, get_director_alarms\n\n    sr = search_appliance_by_name(limit=\"10\", name=\"Branch-101\", offset=\"0\")\n    appliances = sr.get(\"data\")\n    if appliances is None:\n        appliances = sr.get(\"appliances\")\n    if appliances is None:\n        appliances = sr.get(\"result\")\n    if appliances is None:\n        appliances = []\n\n    if len(appliances) == 0:\n        return {\"found\": False, \"message\": \"No appliance found matching name Branch-101\", \"search_response\": sr}\n\n    ap = appliances[0]\n    uuid = ap.get(\"uuid\")\n    if uuid is None:\n        uuid = ap.get(\"applianceUUID\")\n    if uuid is None:\n        uuid = ap.get(\"id\")\n\n    details = None\n    status = None\n    if uuid is not None:\n        details = get_appliance_details_by_uuid(Uuid=str(uuid))\n        status = get_appliance_status_brief(applianceUUID=str(uuid))\n\n    alarms = get_director_alarms(search_string=\"Branch-101\", severity=\"\")\n\n    return {\n        \"found\": True,\n        \"match\": ap,\n        \"uuid\": uuid,\n        \"details\": details,\n        \"status_brief\": status,\n        \"director_alarms\": alarms,\n        \"note\": \"If multiple matches exist, only the first is used.\"\n    }\n"
+}
+[DEBUG] cintegrity.tool.execute_workflow: workflow_planner_code run_id=4f691bbcb14a4514a15fc969ff174c84
+```python
+def workflow():
+    from cintegrity.tools import search_appliance_by_name, get_appliance_status_brief, get_appliance_details_by_uuid, get_director_alarms
+
+    sr = search_appliance_by_name(limit="10", name="Branch-101", offset="0")
+    appliances = sr.get("data")
+    if appliances is None:
+        appliances = sr.get("appliances")
+    if appliances is None:
+        appliances = sr.get("result")
+    if appliances is None:
+        appliances = []
+
+    if len(appliances) == 0:
+        return {"found": False, "message": "No appliance found matching name Branch-101", "search_response": sr}
+
+    ap = appliances[0]
+    uuid = ap.get("uuid")
+    if uuid is None:
+        uuid = ap.get("applianceUUID")
+    if uuid is None:
+        uuid = ap.get("id")
+
+    details = None
+    status = None
+    if uuid is not None:
+        details = get_appliance_details_by_uuid(Uuid=str(uuid))
+        status = get_appliance_status_brief(applianceUUID=str(uuid))
+
+    alarms = get_director_alarms(search_string="Branch-101", severity="")
+
+    return {
+        "found": True,
+        "match": ap,
+        "uuid": uuid,
+        "details": details,
+        "status_brief": status,
+        "director_alarms": alarms,
+        "note": "If multiple matches exist, only the first is used."
+    }
+```
+
+{
+  "ts": "2025-12-20T23:03:57.508086+00:00",
+  "level": "INFO",
+  "logger": "cintegrity.tool.execute_workflow",
+  "message": "workflow_execute_complete",
+  "taskName": "Task-3",
+  "event": "workflow_execute_complete",
+  "run_id": "4f691bbcb14a4514a15fc969ff174c84",
+  "call_count": 1
+}
+Agent: {"found": false, "message": "No appliance found matching name Branch-101", "search_response": {"versanms.search-results": {"total-count": 1, "appliances": [{"uuid": "appl-7c9a21", "name": "Branch-101", "org": "RetailCorp", "type": "SDWAN-CPE", "model": "FlexVNF-100", "status": "UP", "site": "New York"}]}}}
+
+
+Agent: Branch-101 **is present in Director**, but my name search workflow didn’t auto-parse the response format correctly. From the raw search response, I can see:
+
+- **Appliance:** Branch-101  
+- **UUID:** `appl-7c9a21`  
+- **Site:** New York  
+- **Org:** RetailCorp  
+- **Model/Type:** FlexVNF-100 / SDWAN-CPE  
+- **Current status shown:** **UP**
+
+Next step: I can pull **live/brief status + current alarms** for UUID `appl-7c9a21` to pinpoint whether this is an underlay (ISP) issue, tunnel/BGP issue, or interface/link degradation.
+
+Tell me what you mean by “connectivity issues”:
+1) users can’t reach Internet, 2) can’t reach HQ/DC apps, or 3) site is flapping/offline?

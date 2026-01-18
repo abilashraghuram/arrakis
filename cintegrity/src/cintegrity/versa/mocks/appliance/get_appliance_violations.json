@@ -1,0 +1,16 @@
+{
+  "deviceName": "DC-East-Primary",
+  "uuid": "dc-east-001",
+  "totalViolations": 1,
+  "violations": [
+    {
+      "violationId": "viol-001",
+      "type": "CONFIG_DRIFT",
+      "severity": "MINOR",
+      "description": "Local configuration differs from Director template - 3 changes detected",
+      "path": "/config/interfaces/vni-0/3",
+      "detectedAt": "2026-01-05T22:00:00Z",
+      "status": "ACTIVE"
+    }
+  ]
+}

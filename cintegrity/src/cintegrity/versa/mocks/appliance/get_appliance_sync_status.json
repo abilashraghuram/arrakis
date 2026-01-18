@@ -1,0 +1,19 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "org": "GlobalRetail",
+  "syncStatus": "IN_SYNC",
+  "lastSync": "2026-01-06T11:45:00Z",
+  "syncDetails": {
+    "configuration": "IN_SYNC",
+    "policies": "IN_SYNC",
+    "routes": "IN_SYNC",
+    "certificates": "IN_SYNC"
+  },
+  "pendingChanges": 0,
+  "lastDeploy": {
+    "timestamp": "2026-01-05T10:30:00Z",
+    "user": "admin@globalretail.com",
+    "status": "SUCCESS"
+  }
+}

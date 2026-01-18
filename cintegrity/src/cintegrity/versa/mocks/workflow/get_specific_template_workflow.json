@@ -1,0 +1,17 @@
+{
+  "templateName": "Enterprise-Branch-Gold",
+  "org": "GlobalRetail",
+  "type": "DEVICE",
+  "version": "3.2.1",
+  "description": "Gold tier branch template with full security features",
+  "configuration": {
+    "interfaces": {"wan": 2, "lan": 4},
+    "routing": {"bgp": true, "ospf": false},
+    "security": {"firewall": true, "ips": true},
+    "sdwan": {"paths": 2, "slas": 3}
+  },
+  "bindDataSchema": {
+    "fields": ["siteCode", "wanIp", "lanSubnet", "bgpAs"]
+  },
+  "devicesBound": 45
+}

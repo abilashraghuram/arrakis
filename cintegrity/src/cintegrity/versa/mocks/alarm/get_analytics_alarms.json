@@ -1,0 +1,32 @@
+{
+  "totalCount": 50,
+  "alarms": [
+    {
+      "alarmId": "alarm-001",
+      "deviceName": "DC-East-Primary",
+      "severity": "CRITICAL",
+      "type": "LINK_DOWN",
+      "alarmText": "Interface vni-0/1 is down",
+      "raisedTime": "2026-01-08T10:00:00Z",
+      "durationMinutes": 120
+    },
+    {
+      "alarmId": "alarm-002",
+      "deviceName": "DC-West-Primary",
+      "severity": "MAJOR",
+      "type": "HIGH_CPU",
+      "alarmText": "CPU utilization at 92%",
+      "raisedTime": "2026-01-08T11:00:00Z",
+      "durationMinutes": 60
+    },
+    {
+      "alarmId": "alarm-003",
+      "deviceName": "Branch-NYC-001",
+      "severity": "MAJOR",
+      "type": "PATH_DEGRADED",
+      "alarmText": "MPLS path latency exceeded threshold",
+      "raisedTime": "2026-01-08T09:00:00Z",
+      "durationMinutes": 180
+    }
+  ]
+}

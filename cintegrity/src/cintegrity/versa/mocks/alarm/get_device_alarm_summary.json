@@ -1,0 +1,27 @@
+{
+  "deviceName": "DC-East-Primary",
+  "deviceUuid": "dc-east-001",
+  "org": "GlobalRetail",
+  "timestamp": "2026-01-08T12:00:00Z",
+  "totalActive": 2,
+  "bySeverity": {
+    "CRITICAL": 0,
+    "MAJOR": 1,
+    "MINOR": 1,
+    "WARNING": 0
+  },
+  "activeAlarms": [
+    {
+      "alarmId": "alarm-001",
+      "severity": "MAJOR",
+      "type": "CONFIG_DRIFT",
+      "alarmText": "Configuration drift detected"
+    },
+    {
+      "alarmId": "alarm-002",
+      "severity": "MINOR",
+      "type": "HIGH_CPU",
+      "alarmText": "CPU utilization above 80%"
+    }
+  ]
+}

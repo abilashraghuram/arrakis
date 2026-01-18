@@ -1,0 +1,23 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "org": "GlobalRetail",
+  "type": "CONTROLLER",
+  "model": "FlexVNF-1000",
+  "serialNumber": "VN-DC-2024-E001",
+  "softwareVersion": "22.1.3",
+  "hardwareVersion": "1.0",
+  "site": "Ashburn DC",
+  "ip": "10.0.1.10",
+  "managementIp": "10.0.1.10",
+  "controller": "vd-primary.globalretail.com",
+  "controllerUuid": "vd-001",
+  "status": "UP",
+  "syncStatus": "IN_SYNC",
+  "uptimeSeconds": 3932096,
+  "lastBoot": "2025-11-24T00:00:00Z",
+  "lastSeen": "2026-01-08T12:00:00Z",
+  "templates": ["Enterprise-Branch-Gold", "Security-Baseline-v2"],
+  "deviceGroups": ["DC-Controllers", "Primary-Sites"],
+  "tags": ["datacenter", "primary", "east-region"]
+}

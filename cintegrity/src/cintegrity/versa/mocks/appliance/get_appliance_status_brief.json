@@ -1,0 +1,9 @@
+{
+  "uuid": "dc-east-001",
+  "name": "DC-East-Primary",
+  "org": "GlobalRetail",
+  "status": "UP",
+  "health": "GOOD",
+  "syncStatus": "IN_SYNC",
+  "lastSeen": "2026-01-08T12:00:00Z"
+}
