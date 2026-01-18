@@ -125,7 +125,8 @@ def get_callback_url():
     """
     # Using ngrok to expose local callback server to the internet
     # The VM on the remote devbox can reach this URL
-    return "https://e46e12e1d790.ngrok.app"
+    # TODO: Update this URL when you restart ngrok (run: ngrok http 8080)
+    return "https://7202f9750f8f.ngrok-free.app"
 
 
 def main():
@@ -186,11 +187,10 @@ def main():
         print("Test 1: Simple echo callback")
         print("=" * 60)
 
-        # Execute a command that triggers a CALLBACK
-        # The vsockserver inside the VM listens on VSOCK port 4032
-        # CID 2 is the host in virtio-vsock
+        # Execute a command that triggers a CALLBACK via HTTP to the restserver
+        # The guest can reach the restserver at 10.20.1.1 (bridge gateway)
         callback_cmd = '''
-echo "CALLBACK echo {\\"message\\": \\"Hello from VM\\"}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
+curl -s -X POST http://10.20.1.1:7000/v1/internal/callback -H "Content-Type: application/json" -d '{"vmName":"callback-test-sandbox","method":"echo","params":{"message":"Hello from VM"}}'
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
@@ -204,7 +204,7 @@ echo "CALLBACK echo {\\"message\\": \\"Hello from VM\\"}" | socat - VSOCK-CONNEC
         print("=" * 60)
 
         callback_cmd = '''
-echo "CALLBACK get_appliance_info {}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
+curl -s -X POST http://10.20.1.1:7000/v1/internal/callback -H "Content-Type: application/json" -d '{"vmName":"callback-test-sandbox","method":"get_appliance_info","params":{}}'
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
@@ -218,7 +218,7 @@ echo "CALLBACK get_appliance_info {}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null
         print("=" * 60)
 
         callback_cmd = '''
-echo "CALLBACK add_numbers {\\"a\\": 10, \\"b\\": 25}" | socat - VSOCK-CONNECT:2:4032 2>/dev/null || echo "Callback failed - socat/vsock not available"
+curl -s -X POST http://10.20.1.1:7000/v1/internal/callback -H "Content-Type: application/json" -d '{"vmName":"callback-test-sandbox","method":"add_numbers","params":{"a":10,"b":25}}'
 '''
         result = requests.post(
             f"{ARRAKIS_SERVER_URL}/v1/vms/{vm_name}/cmd",
